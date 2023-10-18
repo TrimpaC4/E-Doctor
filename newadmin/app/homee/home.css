@@ -5,3 +5,19 @@
     align-items: flex-start;
     gap: 2rem;
 }
+
+
+  .sidebar-item {
+    margin-bottom: 10px;
+  }
+  
+  .sidebar-item a {
+    display: block;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .sidebar-item a:hover {
+    background-color: #f5f5f5;
+  }
