@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import './review.css'
-import YasBar from "./YasBar";
+import YasBar from "../YasBar";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../store/store";
-import { getOnePatient } from "../../store/patinetSlice";
-import { getOneDoctor } from "../../store/doctorSlice";
+import { AppDispatch, RootState } from "../../../src/redux/store";
+import { getOnePatient } from "../../../src/redux/patientSlice";
+import { getOneDoctor } from "../../../src/redux/doctorSlice";
 
 const Review = () => {
     const dispatch: AppDispatch = useDispatch()
