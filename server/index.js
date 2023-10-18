@@ -4,7 +4,6 @@ const app = express()
 const http = require('http')
 const cors = require("cors")
 const { Server } = require("socket.io")
-require("./prisma")
 const PORT = process.env.PORT || 3000
 const patientRouter = require("./routers/patient.router.js")
 const doctorRouter = require("./routers/doctor.router.js")

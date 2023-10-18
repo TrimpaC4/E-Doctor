@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import  './home.css';
 
+
 const home = () => {
   return (
         <div> 
@@ -20,11 +21,11 @@ const home = () => {
   <div className="offcanvas-body">
     <div>
 <ul className='sidebar' >
-  <li type="button">  stat </li>
-  <li type="button">  Ptients</li>
-  <li type="button"> Doctors </li>
-  <li type="button"> Setting </li>
-  <li type="button">Logout </li>
+  <li >  stat </li>
+  <li > <Link href="/patients"> Ptients </Link> </li>
+  <li > Doctors </li>
+  <li > Setting </li>
+  <li>Logout </li>
 
 </ul>
 
