@@ -12,7 +12,7 @@ const reviewRouter = require("./routers/review.router")
 const roomRouter = require("./routers/room.router")
 const appointmentRouter = require("./routers/appointementRouter.js")
 const AdminDocRouter = require("./routers/admin.doc.router.js")
-const AdminPatientRouter = require("./routers/admin.patient.router.js")
+// const AdminPatientRouter = require("./routers/admin.patient.router.js")
 const messageRouter = require("./routers/message.Router")
 
 app.use(cors())
