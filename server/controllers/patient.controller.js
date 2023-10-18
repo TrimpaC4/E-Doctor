@@ -1,21 +1,26 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const prisma = require('../prisma')
+const prisma = require("../prisma");
 
 module.exports.register = async (req, res) => {
   try {
     bcrypt.hash(req.body.password, 10).then((hassedPass) => {
-      prisma.patients.create({data:{
-        ...req.body,
-        password: hassedPass,
-      }})
-        .then((result) =>
+      prisma.patients
+        .create({
+          data: {
+            ...req.body,
+            password: hassedPass,
+          },
+        })
+        .then((result) =>{
+     
           res.status(201).json({
             message: "User Created Successfully",
             result,
-          })
+          })}
         )
         .catch((error) => {
+          console.log(error)
           res.status(500).send({
             message: "Error creating User",
             error,
@@ -31,11 +36,12 @@ module.exports.register = async (req, res) => {
 };
 
 module.exports.login = async (req, res) => {
-  prisma.patients.findUnique({
-    where: {
-      email: req.body.email,
-    },
-  })
+  prisma.patients
+    .findUnique({
+      where: {
+        email: req.body.email,
+      },
+    })
     .then((Patient) => {
       bcrypt
         .compare(req.body.password, Patient.password)
@@ -78,7 +84,17 @@ module.exports.login = async (req, res) => {
 module.exports.getAll = async (req, res) => {
   try {
     const result = await prisma.patients.findMany({
-      include: {appointments:true}
+      include: {
+        reports: true,
+        appointments: {
+            include: {
+                doctors: true,
+                rooms: true,
+            },
+        },
+        messages: true,
+        rooms: true,
+    },
     });
     res.json(result);
   } catch (error) {
@@ -88,7 +104,7 @@ module.exports.getAll = async (req, res) => {
 };
 
 module.exports.getOne = async (req, res) => {
-    res.status(200).send(req.user);
+  res.status(200).send(req.user);
 };
 
 module.exports.remove = async (req, res) => {
@@ -111,7 +127,10 @@ module.exports.remove = async (req, res) => {
 module.exports.Update = async (req, res) => {
   try {
     const id = req.params.id;
-    const result = await prisma.patients.update({ where: { id: id },data:req.body });
+    const result = await prisma.patients.update({
+      where: { id: id },
+      data: req.body,
+    });
     res.json(result);
   } catch (error) {
     res.status(404).send(error);

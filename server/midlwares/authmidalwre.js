@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
-const { Patient, Doctor } = require("../database");
+const prisma = require("../prisma");
+
 
 const authProtection = async (req, res, next) => {
   let token;
@@ -13,20 +14,25 @@ const authProtection = async (req, res, next) => {
       token = req.headers.authorization.split(" ")[1];
 
       //Verify token
+      console.log(token)
       const decoded = jwt.verify(token, process.env.SECRET_KEY);
+      console.log(decoded)
       //Get User from the token
       if (decoded.PatientId) {
-        req.user = await Patient.findByPk(decoded.PatientId, {
-          include: { all: true, nested: true },
-        });
+        req.user = await prisma.patients.findUnique( {where:{
+          id: decoded.PatientId,
+        },include:{appointments:true,reports:true,reviews:true}}
+
+        );
       } else {
-        req.user = await Doctor.findByPk(decoded.DoctorId, {
-          include: { all: true, nested: true },
+        req.user = await prisma.doctors.findUnique(decoded.DoctorId,{
+          include:{appointments:true,reports:true},
         });
       }
       next();
     } catch (error) {
       res.status(401);
+      console.log(error)
       res.send("Not authorized");
     }
   }
