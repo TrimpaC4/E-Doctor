@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const prisma = require("../prisma");
+const prisma = require("../prisma/prisma");
 
 module.exports.register = async (req, res) => {
   try {
@@ -83,18 +83,19 @@ module.exports.login = async (req, res) => {
 
 module.exports.getAll = async (req, res) => {
   try {
-    const result = await prisma.patients.findMany({
-      include: {
-        reports: true,
-        appointments: {
-            include: {
-                doctors: true,
-                rooms: true,
-            },
-        },
-        messages: true,
-        rooms: true,
-    },
+    const result = await prisma.patients.findMany(
+  {
+    //   include: {
+    //     reports: true,
+    //     appointments: {
+    //         include: {
+    //             doctors: true,
+    //             rooms: true,
+    //         },
+    //     },
+    //     messages: true,
+    //     rooms: true,
+    // },
     });
     res.json(result);
   } catch (error) {
