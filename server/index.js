@@ -24,7 +24,6 @@ app.use("/api/review", reviewRouter)
 app.use("/api/room", roomRouter)
 app.use("/api/appointment/", appointmentRouter)
 app.use("/api/AdminDoc/", AdminDocRouter);
-app.use("/api/AdminPatient/", AdminPatientRouter);
 app.use("/api/message/",messageRouter)
 
 
