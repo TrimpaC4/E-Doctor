@@ -1,94 +1,96 @@
+"use client"
 import React, { useState } from "react";
-
-import { RootState, AppDispatch } from "../redux/store";
-import { useSelector, useDispatch } from "react-redux";
-import { doctorLogin } from "../redux/doctorSlice";
-import { loginPatient } from "../redux/patientSlice";
-// import { useRouter } from "next/router";
-import { getOneDoctor } from "../redux/doctorSlice";
-import { getOnePatient } from "../redux/patientSlice";
-import { toast } from "react-toastify";
 import "./style.css";
+import { RootState, AppDispatch } from "../../src/redux/store";
+import { useSelector, useDispatch } from "react-redux";
+import { doctorLogin } from "../../src/redux/doctorSlice";
+import { loginPatient } from "../../src/redux/patientSlice";
+import { useRouter } from "next/navigation";
+import { getOneDoctor } from "../../src/redux/doctorSlice";
+import { getOnePatient } from "../../src/redux/patientSlice";
+import { toast } from "react-toastify";
 
 function Form() {
-//   const user = useSelector((state: RootState) => state.doctor);
-//   const dispatch: AppDispatch = useDispatch();
-//   const router = useRouter();
+  const router = useRouter()
+  const user = useSelector((state: RootState) => state.doctor);
+  const dispatch: AppDispatch = useDispatch();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userType, setUserType] = useState("");
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    // try {
-    //   e.preventDefault();
-    //   if (userType === "doctor") {
-    //     const res = await dispatch(
-    //       doctorLogin({
-    //         email,
-    //         password,
-    //       })
-    //     );
+  const handleSubmit = async (e: any) => {
+    try {
+      e.preventDefault();
+      if (userType === "doctor") {
+        const res = await dispatch(
+          doctorLogin({
+            email,
+            password,
+          }),
+        );
 
-    //     if (res.payload.token) {
-    //       router.push("/");
-    //       dispatch(getOneDoctor());
-    //       toast.success("Welcome", {
-    //         position: "top-center",
-    //         autoClose: 5000,
-    //         hideProgressBar: false,
-    //         closeOnClick: true,
-    //         pauseOnHover: false,
-    //         draggable: true,
-    //         progress: undefined,
-    //         theme: "dark",
-    //       });
-    //     } else {
-    //       toast.error("Wrong Password Or Email", {
-    //         position: "top-center",
-    //         autoClose: 5000,
-    //         hideProgressBar: false,
-    //         closeOnClick: true,
-    //         pauseOnHover: false,
-    //         draggable: true,
-    //         progress: undefined,
-    //         theme: "dark",
-    //       });
-    //     }
-    //   } else if (userType === "patient") {
-    //     const res = await dispatch(
-    //       loginPatient({
-    //         email,
-    //         password,
-    //       })
-    //     );
-    //     if (res.payload.token) {
-    //       dispatch(getOnePatient());
-    //       router.push("/");
-    //       toast.success("Welcome", {
-    //         position: "top-center",
-    //         autoClose: 5000,
-    //         hideProgressBar: false,
-    //         closeOnClick: true,
-    //         pauseOnHover: false,
-    //         draggable: true,
-    //         progress: undefined,
-    //         theme: "dark",
-    //       });
-    //     } else {
-    //       toast.error("Wrong Password Or Email", {
-    //         position: "top-center",
-    //         autoClose: 5000,
-    //         hideProgressBar: false,
-    //         closeOnClick: true,
-    //         pauseOnHover: false,
-    //         draggable: true,
-    //         progress: undefined,
-    //         theme: "dark",
-    //       });
-    //     }
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
+        if (res.payload.token) {
+          router.push("/");
+          dispatch(getOneDoctor())
+          toast.success("Welcome", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+        } else {
+          toast.error("Wrong Password Or Email", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+        }
+      }
+      else if (userType === "patient") {
+        const res = await dispatch(
+          loginPatient({
+            email,
+            password,
+          })
+        );
+        if (res.payload.token) {
+          dispatch(getOnePatient())
+          router.push("/");
+          toast.success("Welcome", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+        } else {
+          toast.error("Wrong Password Or Email", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="signIn">
@@ -112,83 +114,75 @@ function Form() {
       <div className="divider d-flex align-items-center my-4">
         <p className="text-center fw-bold mx-3 mb-0">Or</p>
       </div>
-      <form onSubmit={handleSubmit}>
-        <div className="form-outline mb-4">
-          <input
-            type="email"
-            id="form3Example3"
-            className="form-control form-control-lg"
-            placeholder="Enter a valid email address"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
-          <label className="form-label" htmlFor="form3Example3">
-            Email address
-          </label>
-        </div>
-        <div className="form-outline mb-3">
-          <input
-            type="password"
-            id="form3Example4"
-            className="form-control form-control-lg"
-            placeholder="Enter password"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-          <label className="form-label" htmlFor="form3Example4">
-            Password
-          </label>
-        </div>
+      <div className="form-outline mb-4">
+        <input
+          type="email"
+          id="form3Example3"
+          className="form-control form-control-lg"
+          placeholder="Enter a valid email address"
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+        />
+        <label className="form-label" htmlFor="form3Example3">
+          Email address
+        </label>
+      </div>
+      <div className="form-outline mb-3">
+        <input
+          type="password"
+          id="form3Example4"
+          className="form-control form-control-lg"
+          placeholder="Enter password"
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+        />
+        <label className="form-label" htmlFor="form3Example4">
+          Password
+        </label>
+      </div>
 
-        <div className="d-flex justify-content-between align-items-center">
-          <div className="form-check mb-0">
-            <input
-              className="form-check-input me-2"
-              type="checkbox"
-              value=""
-              id="form2Example3"
-            />
-            <label className="form-check-label" htmlFor="form2Example3">
-              Remember me
-            </label>
-          </div>
-          <a href="#!" className="text-body">
-            Forgot password?
+      <div className="d-flex justify-content-between align-items-center">
+        <div className="form-check mb-0">
+          <input
+            className="form-check-input me-2"
+            type="checkbox"
+            value=""
+            id="form2Example3"
+          />
+          <label className="form-check-label" htmlFor="form2Example3">
+            Remember me
+          </label>
+        </div>
+        <a href="#!" className="text-body">
+          Forgot password?
+        </a>
+      </div>
+      <div>
+        <select required onChange={(e: any) => setUserType(e.target.value)}>
+          <option selected>Choose One Please </option>
+          <option value="doctor">Doctor</option>
+          <option value="patient">Patient</option>
+        </select>
+      </div>
+
+      <div className="text-center text-lg-start mt-4 pt-2">
+        <button
+          type="button"
+          className="btn btn-primary btn-lg"
+          style={{ paddingLeft: "2.5rem", paddingRight: "2.5rem" }}
+          onClick={(e) => handleSubmit(e)}
+        >
+          Log In
+        </button>
+        <p className="small fw-bold mt-2 pt-1 mb-0">
+          Don't have an account?{" "}
+          <a href="#!" className="link-danger">
+            Register
           </a>
-        </div>
-        <div>
-          <select
-            required
-            onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-              setUserType(e.target.value)
-            }
-          >
-            <option value="" disabled selected>
-              Choose One Please{" "}
-            </option>
-            <option value="doctor">Doctor</option>
-            <option value="patient">Patient</option>
-          </select>
-        </div>
-
-        <div className="text-center text-lg-start mt-4 pt-2">
-          <button
-            type="submit"
-            className="btn btn-primary btn-lg"
-            style={{ paddingLeft: "2.5rem", paddingRight: "2.5rem" }}
-          >
-            Log In
-          </button>
-          <p className="small fw-bold mt-2 pt-1 mb-0">
-            Don't have an account?{" "}
-            <a href="#!" className="link-danger">
-              Register
-            </a>
-          </p>
-        </div>
-      </form>
+        </p>
+      </div>
     </div>
   );
 }
