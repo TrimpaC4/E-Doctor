@@ -1,11 +1,11 @@
 "use client"
 import "./style.css"
 import React, { useState } from 'react'
-import doctor from "../../assets/images/image 17.png"
-import container from "../../assets/images/Container.png"
+import doctor from "../src/assets/images/image 17.png"
+import container from "../src/assets/images/Container.png"
 import CardService from "../src/components/CardService"
 import TeamMember from "../src/components/TeamMember"
-import { useNavigate, Link } from "react-router-dom";
+import Link from 'next/link';
 import Image from "next/image"
 import { useSelector } from "react-redux"
 // import { RootState } from "../../store/store"
@@ -48,7 +48,6 @@ var obj = {
 const LandingPage = () => {
     const [department, setDepartment] = useState("")
     const [name, setName] = useState("")
-    const navigate = useNavigate();
     const isLoggedIn = localStorage.getItem('token');
     // const { allDoctors } = useSelector((state: RootState) => state.doctor);
 
@@ -71,8 +70,8 @@ const LandingPage = () => {
                         </div>
                         <div className="texts-buttons">
                             <div className="texts-buttons-btn1"
-                                onClick={() => isLoggedIn && navigate("/doctorProfile/appointments")}
-                            >Appointements</div>
+                                onClick={() => isLoggedIn && <Link href="/somepage">Appointements</Link>}
+                            > </div>
                             <svg xmlns="http://www.w3.org/2000/svg" width="51" height="51" viewBox="0 0 51 51" fill="none">
                                 <circle cx="25.5" cy="25.5" r="25.5" fill="#007E85" />
                                 <path d="M34.5 24.634C35.1667 25.0189 35.1667 25.9811 34.5 26.366L21.75 33.7272C21.0833 34.1121 20.25 33.631 20.25 32.8612L20.25 18.1388C20.25 17.369 21.0833 16.8879 21.75 17.2728L34.5 24.634Z" fill="white" />
@@ -81,7 +80,7 @@ const LandingPage = () => {
                         </div>
                     </div>
                     <div className="image-docotor-wrapper">
-                        <Image className="image-docotor" src={doctor} />
+                        <Image className="image-docotor" src={doctor} alt=""/>
                         <svg xmlns="http://www.w3.org/2000/svg" width="520" height="548" viewBox="0 0 520 548" fill="none">
                             <path d="M371.861 69.4458C407.056 98.7392 437.929 129.716 463.554 167.091C489.178 204.802 510.172 248.91 517.273 297.732C524.374 346.555 517.582 399.754 497.205 447.903C477.138 495.716 437.796 488.481 395.5 507C363.5 529 316 548 263.5 548C214 548 182 545 139 522C102 490.5 41.5208 478.544 18.9835 441.506C-3.86244 404.468 0.151041 348.912 0.459771 293.355C0.7685 238.135 -2.62753 182.579 14.97 136.114C32.5676 89.6481 71.1588 52.2738 114.998 28.3677C158.838 4.46155 208.235 -5.63964 252.692 3.11472C297.149 12.2058 336.666 40.1524 371.861 69.4458Z" fill="url(#paint0_linear_47_34)" />
                             <defs>
@@ -100,7 +99,7 @@ const LandingPage = () => {
                             <input placeholder="Name" onChange={((e: any) => { setName(e.target.value) })} />
                             <input placeholder="Department" onChange={(e: any) => { setDepartment(e.target.value) }} />
                         </div>
-                        <Link to="/services" state={{ department, name }}>
+                        <Link href="/services">
                             <div
                                 className="serach-input">
                                 Search
