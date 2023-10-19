@@ -93,7 +93,7 @@ module.exports.getOne = async (req, res) => {
 };
 module.exports.deleteOne = async (req, res) => {
     try {
-        const result = await  prisma.doctors.delete({ where: { id: req.params.id } })
+        const result = await  prisma.doctors.delete({ where: { id: +req.params.id } })
         res.json(result)
     } catch (error) {
         throw new Error(error)

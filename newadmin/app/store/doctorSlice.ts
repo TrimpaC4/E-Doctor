@@ -5,6 +5,7 @@ interface doctorType {
   name: string;
   avatarUrl: string;
   department: string;
+  isVerified: boolean
 }
 interface DoctorState {
   doctorInfo: Object;
@@ -99,6 +100,17 @@ export const getReviewsByDocId = createAsyncThunk(
     }
   }
 );
+export const removeDoctor = createAsyncThunk('api/doctor', async (id:number,{dispatch})=>{
+  try {console.log('this is id', id);
+
+   const response = await axios.delete(`http://localhost:5000/api/doctor/${id}`)
+ return (await (dispatch(getAllDoctors()))).payload
+ }
+  catch(error) {
+   console.log(error);
+
+  }
+ });
 
 const doctorSlice = createSlice({
   name: "DoctorSlice",

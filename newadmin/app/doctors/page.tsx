@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppDispatch, RootState } from '../store';
-import { getAllDoctors } from '../store/doctorSlice';
+import { getAllDoctors, removeDoctor } from '../store/doctorSlice';
 import Navbar from '../navbar/page';
 import './style.css';
 interface doctorType {
@@ -23,6 +23,7 @@ const DoctorsList = () => {
     dispatch(getAllDoctors())
   }, []);
   const  allDoctors: Array<doctorType> = useSelector((state: RootState) => state.doctor.allDoctors);
+  console.log("doctors",allDoctors)
 
   return (
     <div>
@@ -40,8 +41,10 @@ const DoctorsList = () => {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small">Block</Button>
-            <Button size="small">Unblock</Button>
+            <Button size="small">Verify</Button>
+            <Button size="small"onClick={(()=>{
+              dispatch(removeDoctor(doctor.id))
+            })}>Delete</Button>
           </CardActions>
         </Card>
       ))}
