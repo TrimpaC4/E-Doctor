@@ -55,9 +55,14 @@ var obj = {
         query?:queryType
       }
 
-const ServicePage = () => {
-    const router:routerType = useRouter()
-    const query=router.query
+const ServicePage = ({searchParams,}:{
+    searchParams:{
+        department:string,
+        name:string
+    }
+}) => {
+    const router = useRouter()
+    console.log(searchParams.name);
      const [department, setDepartment] = useState<string>("")
      const [name, setName] = useState<string>("")
     const [time, setTime] = useState<string>("")
@@ -96,12 +101,12 @@ const ServicePage = () => {
 
         }
     }
-    useEffect(() => {
-        console.log(query?.department)
-        if (query?.department && query?.name) {
-          handleByDepartment(query?.department as string, query?.name as string)
-        }
-      }, [])
+    // useEffect(() => {
+    //     console.log(query?.department)
+    //     if (query?.department && query?.name) {
+    //       handleByDepartment(query?.department as string, query?.name as string)
+    //     }
+    //   }, [])
     return (
         <div className='services-page-conatiner'>
             <div className='services-hospital-image-wrapper'>
