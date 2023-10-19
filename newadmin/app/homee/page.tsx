@@ -24,7 +24,7 @@ const home = () => {
   <li >  stat </li>
   <li > <Link href="/patients"> Ptients </Link> </li>
   <li > Doctors </li>
-  <li > Setting </li>
+  <li > <Link href="/set"> setting </Link>  </li>
   <li>Logout </li>
 
 </ul>
@@ -32,16 +32,11 @@ const home = () => {
      </div>
   </div>
 </div>
-            
 
         </div>
          
   )
 
-
-
- 
-  
   
 }
 
