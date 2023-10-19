@@ -1,14 +1,17 @@
 "use client"
 import "./style.css"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import doctor from "../src/assets/images/image 17.png"
 import container from "../src/assets/images/Container.png"
 import CardService from "../src/components/CardService"
 import TeamMember from "../src/components/TeamMember"
 import Link from 'next/link';
 import Image from "next/image"
-import { useSelector } from "react-redux"
-import { RootState } from "./../src/redux/store"
+import { useSelector ,useDispatch } from "react-redux"
+import { RootState,AppDispatch} from "./../src/redux/store"
+import { useRouter } from "next/navigation"
+import { ReduxProvider } from "@/src/redux/provider"
+import { getAllDoctors } from "@/src/redux/doctorSlice" 
 var obj = {
     Neurologist: {
         para: "A neurologist is a medical doctor who specializes in the diagnosis and treatment of disorders that affect the nervous system. The nervous system is a complex network that includes the brain, spinal cord, and peripheral nerves. Neurologists are experts in the management of various neurological conditions",
@@ -46,12 +49,18 @@ var obj = {
 
 
 const LandingPage = () => {
-    const [department, setDepartment] = useState("")
-    const [name, setName] = useState("")
-    const isLoggedIn = localStorage.getItem('token');
+    const router = useRouter()
+    const [department, setDepartment] = useState<string>("")
+    const [name, setName] = useState<string>("")
+    const dispatsh:AppDispatch = useDispatch()
+    const [token, setToken] = useState<any>(localStorage.getItem('token'))
     const { allDoctors } = useSelector((state: RootState) => state.doctor);
-
+ 
+    useEffect(()=>{
+        dispatsh(getAllDoctors())
+    },[])
     return (
+        <ReduxProvider>
         <div className="landing-page-container">
             <div className="landing-page-container-child-1">
                 <div className="sub1-child-1">
@@ -70,7 +79,7 @@ const LandingPage = () => {
                         </div>
                         <div className="texts-buttons">
                             <div className="texts-buttons-btn1"
-                                onClick={() => isLoggedIn && <Link href="/somepage">Appointements</Link>}
+                                onClick={() => token && <Link href="/somepage">Appointements</Link>}
                             > </div>
                             <svg xmlns="http://www.w3.org/2000/svg" width="51" height="51" viewBox="0 0 51 51" fill="none">
                                 <circle cx="25.5" cy="25.5" r="25.5" fill="#007E85" />
@@ -99,12 +108,12 @@ const LandingPage = () => {
                             <input placeholder="Name" onChange={((e: any) => { setName(e.target.value) })} />
                             <input placeholder="Department" onChange={(e: any) => { setDepartment(e.target.value) }} />
                         </div>
-                        <Link href="/services">
+                         <Link href={{pathname:"/services",query:{department,name}}}>
                             <div
-                                className="serach-input">
+                                className="sera-input">
                                 Search
                             </div>
-                        </Link>
+                            </Link>
                     </div>
                 </div>
             </div>
@@ -189,6 +198,7 @@ const LandingPage = () => {
                 </div>
             </div>
         </div >
+        </ReduxProvider>
     )
 }
 

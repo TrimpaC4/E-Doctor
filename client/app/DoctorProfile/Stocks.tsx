@@ -4,7 +4,7 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faArrowTrendUp } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import { RootState } from '../../src/redux/store';
 
 
 const Stocks = () => {

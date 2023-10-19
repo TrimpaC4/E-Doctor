@@ -1,18 +1,18 @@
 const express = require("express");
 const {
     getAll,
-    getOne,
-    create,
-    remove,
-    update,
-} = require("../controllers/admin.controllers.js");
+    // getOne,
+    // create,
+    // remove,
+    // update,
+} = require("../controllers/admin.controller");
 const AdminPatientRouter = express.Router();
 const authProtection = require("../midlwares/authmidalwre.js");
 
 AdminPatientRouter.get("/all", getAll);
-AdminPatientRouter.get("/:id", getOne);
-AdminPatientRouter.post("/add", create);
-AdminPatientRouter.delete("/:id", remove);
-AdminPatientRouter.put("/:id", update);
+// AdminPatientRouter.get("/:id", getOne);
+// AdminPatientRouter.post("/add", create);
+// AdminPatientRouter.delete("/:id", remove);
+// AdminPatientRouter.put("/:id", update);
 
 module.exports =  AdminPatientRouter
