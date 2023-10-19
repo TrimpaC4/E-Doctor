@@ -1,46 +1,52 @@
-import React from 'react'
-import Homee from '../homee/page';
-import Navbar from '../navbar/page';
+'use client'
+import React, { useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Image from 'next/image';
-import img from './dr.png';
+import { useSelector, useDispatch } from 'react-redux';
+import { AppDispatch, RootState } from '../store';
+import { getAllDoctors } from '../store/doctorSlice';
+import Navbar from '../navbar/page';
+interface doctorType {
+  id: number;
+  name: string;
+  avatarUrl: string;
+  department: string;
+}
+const DoctorsList = () => {
+  const dispatch: AppDispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllDoctors())
+  }, []);
+  const  allDoctors: Array<doctorType> = useSelector((state: RootState) => state.doctor.allDoctors);
 
-const Page: React.FC = () => {
   return (
     <div>
       <Navbar />
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Card sx={{ maxWidth: 345 }}>
-          <div style={{ position: 'relative', width: '100%', height: '140px' }}>
-            <Image
-              src={img}
-              alt="Doctor"
-              layout="fill"
-              objectFit="contain"
-            />
-          </div>
+    <div style={{ display: 'grid', flexWrap: 'wrap', justifyContent: 'center', gridTemplateColumns:'auto auto auto auto' }}>
+      {allDoctors.map((doctor: doctorType, i: number) => (
+        <Card key={doctor.id} sx={{ maxWidth: 345, margin: '10px' }}>
+          <CardMedia component="img" height="140" image={doctor.avatarUrl} alt={doctor.name} />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              Dr Angelo
+              {doctor.name}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over 6,000
-              species, ranging across all continents except Antarctica
+              {doctor.department}
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small">Share</Button>
-            <Button size="small">Learn More</Button>
+            <Button size="small">Block</Button>
+            <Button size="small">Unblock</Button>
           </CardActions>
         </Card>
-      </div>
+      ))}
     </div>
-  )
-}
+    </div>
+  );
+};
 
-export default Page
+export default DoctorsList;
