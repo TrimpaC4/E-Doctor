@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 // import CalendarComponent from "./CalendarComponent";
-import Stocks from "./Stocks";
-import Charts from "./Charts";
-import DonePatients from "./DonePatients";
-import DoctorCards from "./DoctorCards";
-import AppointmentsList from "./AppointmentsList";
+import Stocks from "../Stocks";
+import Charts from "../Charts";
+import DonePatients from "../DonePatients";
+import DoctorCards from "../DoctorCards";
+import AppointmentsList from "../AppointmentsList";
 import Calendar from "react-calendar";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../src/redux/store";
-import { getOnePatient } from "../../src/redux/patientSlice";
-import { getOneDoctor } from "../../src/redux/doctorSlice";
+import { AppDispatch, RootState } from "../../../src/redux/store";
+import { getOnePatient } from "../../../src/redux/patientSlice";
+import { getOneDoctor } from "../../../src/redux/doctorSlice";
 
 const Overview = () => {
   const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo);
