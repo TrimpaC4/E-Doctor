@@ -10,13 +10,14 @@ import {
     useDispatch,
     useSelector,
   } from 'react-redux';
-
-import  patient  from './patientSlice';
+import doctorReducer from './doctorSlice';
+import  patientReducer  from './patientSlice';
   
 
 export const store = configureStore({
     reducer: {
-        patient,
+        patient: patientReducer,
+        doctor: doctorReducer
         
     },
   });
