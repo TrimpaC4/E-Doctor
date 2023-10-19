@@ -54,9 +54,8 @@ const LandingPage = () => {
     const [name, setName] = useState<string>("")
     const dispatsh:AppDispatch = useDispatch()
     const [token, setToken] = useState<any>(localStorage.getItem('token'))
-    console.log(token);
     const { allDoctors } = useSelector((state: RootState) => state.doctor);
-    console.log(allDoctors)
+ 
     useEffect(()=>{
         dispatsh(getAllDoctors())
     },[])
@@ -109,12 +108,12 @@ const LandingPage = () => {
                             <input placeholder="Name" onChange={((e: any) => { setName(e.target.value) })} />
                             <input placeholder="Department" onChange={(e: any) => { setDepartment(e.target.value) }} />
                         </div>
-                        
+                         <Link href={{pathname:"/services",query:{department,name}}}>
                             <div
-                                className="sera-input" onClick={()=>{router.push(`/services=${department}&name=${name}`)}}>
+                                className="sera-input">
                                 Search
                             </div>
-                        
+                            </Link>
                     </div>
                 </div>
             </div>
