@@ -1,5 +1,5 @@
 .AdminLoginMainContainer {
-    background-image: url('../../Assets/LoginBg.jpg');
+    background-image: url('../Assets/LoginBg.jpg');
     background-size: cover;
     background-repeat: no-repeat; 
     height: 100vh;

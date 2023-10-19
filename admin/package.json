@@ -15,11 +15,13 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@types/next": "^9.0.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "13.5.5",
     "typescript": "^5"
-  }
+  },
+  "proxy": "http://localhost:5000"
 }

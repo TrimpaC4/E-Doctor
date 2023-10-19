@@ -12,8 +12,8 @@ const reviewRouter = require("./routers/review.router")
 const roomRouter = require("./routers/room.router")
 const appointmentRouter = require("./routers/appointementRouter.js")
 const AdminDocRouter = require("./routers/admin.doc.router.js")
-// const AdminPatientRouter = require("./routers/admin.patient.router.js")
 const messageRouter = require("./routers/message.Router")
+const payment = require('./routers/payment.router.js')
 
 app.use(cors())
 
@@ -25,6 +25,7 @@ app.use("/api/room", roomRouter)
 app.use("/api/appointment/", appointmentRouter)
 app.use("/api/AdminDoc/", AdminDocRouter);
 app.use("/api/message/",messageRouter)
+app.use("/api/payment", payment)
 
 
 

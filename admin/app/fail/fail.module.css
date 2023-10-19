@@ -1,0 +1,31 @@
+.failPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+    gap: 2rem;
+}
+
+.failPage > h1 {
+    font-size: 3em;
+    text-align: center;
+}
+
+.failPage > h1 > span {
+    font-size: 1em;
+}
+
+.failPage > button {
+    background-color: red;
+    border: none;
+    color: white;
+    padding: 1em 2em;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;   
+    border-radius: 4px;
+}
+
+.failPage > button:hover {
+    background-color: rgb(255, 58, 58);
+}

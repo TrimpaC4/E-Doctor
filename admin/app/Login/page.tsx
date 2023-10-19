@@ -46,7 +46,6 @@ const Login: React.FC = () => {
     <div className={LoginStyle.AdminLoginMainContainer}>
       <div className={LoginStyle.LoginMainContainer}>
         <p>Sign in</p>
-        <p>{message}</p>
         <div className={LoginStyle.LoginInputs}>
           <input
             type="text"
