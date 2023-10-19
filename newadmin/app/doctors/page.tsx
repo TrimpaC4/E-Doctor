@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { AppDispatch, RootState } from '../store';
 import { getAllDoctors } from '../store/doctorSlice';
 import Navbar from '../navbar/page';
+import './style.css';
 interface doctorType {
   id: number;
   name: string;
@@ -29,7 +30,7 @@ const DoctorsList = () => {
     <div style={{ display: 'grid', flexWrap: 'wrap', justifyContent: 'center', gridTemplateColumns:'auto auto auto auto' }}>
       {allDoctors.map((doctor: doctorType, i: number) => (
         <Card key={doctor.id} sx={{ maxWidth: 345, margin: '10px' }}>
-          <CardMedia component="img" height="140" image={doctor.avatarUrl} alt={doctor.name} />
+          <CardMedia component="img"  image={doctor.avatarUrl} alt={doctor.name} className='images'/>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               {doctor.name}
