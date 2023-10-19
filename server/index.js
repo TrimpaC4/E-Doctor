@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 const http = require('http')
 const cors = require("cors")
-require("./prisma")
+require("./prisma/prisma.js")
 const PORT = process.env.PORT || 3000
 const patientRouter = require("./routers/patient.router.js")
 const doctorRouter = require("./routers/doctor.router.js")

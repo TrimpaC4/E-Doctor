@@ -10,25 +10,30 @@ function Chat() {
 
   const sendMessage = async (message) => {
     if (message !== "") {
-      await socket.emit("send-message", message);
-      allMessages.push(message);
-      setAllMessages(allMessages);
+      await socket.emit("send-message", {message , class: "me", time : Date(Date.now())});
+      setAllMessages((allMessages)=> [...allMessages, {message , class: socket.id,  time : Date(Date.now())}]);
+
     }
   };
   useEffect(() => {
     socket.on("receive-message",(data) => {
       allMessages.push(data);
-      setAllMessages(allMessages);
-      // console.log(...allMessages);
+      setAllMessages((allMessages)=> [...allMessages, data]);
+      // console.log(socket.id);
     });
   }, [socket]);
 
 
   return (
     <div className="chat">
-      <div>
-        
+      <div className="feed">
+        {
+          allMessages.map((message,i)=>{
+            return <div key={i} className={message.class === socket.id ? "me": "you" }>{message.message}</div>
+          })
+        }
       </div>
+      <div className="inputs">
       <input
         type="text"
         placeholder="write message"
@@ -43,6 +48,7 @@ function Chat() {
       >
         send message
       </button>
+      </div>
     </div>
   );
 }
