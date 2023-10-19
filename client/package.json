@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "chat": "nodemon src/components/chatApp/back/index.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
@@ -15,8 +16,10 @@
     "@reduxjs/toolkit": "^1.9.7",
     "@testing-library/jest-dom": "^6.1.4",
     "axios": "^1.5.1",
+    "express": "^4.18.2",
     "next": "^13.5.5",
     "next-redux-wrapper": "^8.1.0",
+    "nodemon": "^3.0.1",
     "react": "^18",
     "react-calendar": "^4.6.1",
     "react-chartjs-2": "^5.2.0",
@@ -24,7 +27,9 @@
     "react-redux": "^8.1.3",
     "react-router-dom": "^6.17.0",
     "react-toastify": "^9.1.3",
-    "redux": "^4.2.1"
+    "redux": "^4.2.1",
+    "socket.io": "^4.7.2",
+    "socket.io-client": "^4.7.2"
   },
   "devDependencies": {
     "@types/node": "^20",
