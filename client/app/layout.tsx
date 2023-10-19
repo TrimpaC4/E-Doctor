@@ -24,6 +24,15 @@ export default function RootLayout({
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
           crossOrigin="anonymous"
         />
+        {/* <link
+          rel="stylesheet"
+          href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css"
+        />
+
+        <link
+          rel="stylesheet"
+          href="https://api.mapbox.com/mapbox-assembly/v1.5.1/assembly.min.css"
+        /> */}
       </head>
       <body>
         <ReduxProvider>
