@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import "./style.css"
 import hospital from "../../src/assets/images/hospital.png"
 import Calendar from 'react-calendar'
@@ -7,8 +7,10 @@ import CardService from '../../src/components/CardService'
 import LeadingMedicine from './LeadingMedicine'
 import axios from 'axios'
 import { toast } from "react-toastify"
-import { useLocation } from 'react-router-dom'
 import Image from 'next/image'
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
+import { useRouter } from 'next/navigation'
+
 var obj = {
     Neurologist: {
         para: "A neurologist is a medical doctor who specializes in the diagnosis and treatment of disorders that affect the nervous system. The nervous system is a complex network that includes the brain, spinal cord, and peripheral nerves. Neurologists are experts in the management of various neurological conditions",
@@ -43,17 +45,32 @@ var obj = {
         img: "https://www.valleycountyhealthsystem.org/assets/site/images/Orthopedic.png"
     },
 }
+  
+      interface queryType{
+          name:string,
+          department:string
+      }
+     
+    interface routerType extends AppRouterInstance{
+        query?:queryType
+      }
 
-
-const ServicePage = () => {
-    const location: any = useLocation()
-    const [department, setDepartment] = useState("")
-    const [name, setName] = useState("")
-    const [time, setTime] = useState("")
+const ServicePage = ({searchParams,}:{
+    searchParams:{
+        department:string,
+        name:string
+    }
+}) => {
+     const router = useRouter()
+     const [department, setDepartment] = useState<string>("")
+     const [name, setName] = useState<string>("")
+    const [time, setTime] = useState<string>("")
     const [filtredDoctors, setFiltredDoctors] = useState([])
     const handleByDepartment = async (department: string, name: string) => {
         try {
-            const response = await axios.post(`http://localhost:5000/api/doctor/departmentFilter`, { department, name })
+            
+            const response = await axios.post(`http://localhost:5000/api/doctor/departmentFilter`,{department,name})
+            console.log(response.data)
             setFiltredDoctors(response.data)
             if (response.data.length > 0) {
                 window.scrollTo(0, 3000)
@@ -75,7 +92,8 @@ const ServicePage = () => {
     }
     const handleFilterDoctors = async (Department: string, Time: string) => {
         try {
-            const res = await axios.post("http://localhost:5000/api/doctor/getAvailable", { Department, Time })
+            console.log(department,time)
+            const res = await axios.post("http://localhost:5000/api/doctor/getAvailable", { department:Department, time:Time })
             setFiltredDoctors(res.data)
             if (res.data.length > 0) {
                 window.scrollTo(0, 3000)
@@ -86,10 +104,11 @@ const ServicePage = () => {
         }
     }
     useEffect(() => {
-        if (location.state) {
-            handleByDepartment(location.state.department, location.state.name)
+        console.log(searchParams?.department)
+        if (searchParams?.department && searchParams?.name) {
+          handleByDepartment(searchParams?.department as string, searchParams?.name as string)
         }
-    }, [])
+      }, [])
     return (
         <div className='services-page-conatiner'>
             <div className='services-hospital-image-wrapper'>
@@ -212,7 +231,7 @@ const ServicePage = () => {
                     <p style={{ color: "#555", fontWeight: "400" }}>Problems trying to reslove the conflict betwenn the two major realms of Classical physics Newtonian mechanics </p>
                 </div>
                 <div style={{ padding: "0rem 4rem 1rem 7rem" }} className="all-leading-cards-container d-flex flex-wrap gap-4 ">
-                    {filtredDoctors.map((doctor: any, i: any) => <LeadingMedicine key={i} doctor={doctor} date={time} />)}
+                    {filtredDoctors?.map((doctor: any, i: any) => <LeadingMedicine key={i} doctor={doctor} date={time} />)}
 
                 </div>
             </div>

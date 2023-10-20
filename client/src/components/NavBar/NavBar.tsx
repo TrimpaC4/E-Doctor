@@ -1,6 +1,6 @@
 "use client"
 import "./style.css"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import logo from "../../assets/images/logo.png"
 import Link from "next/link"
 import { useDispatch, useSelector } from "react-redux"
@@ -14,10 +14,14 @@ const NavBar = (): React.JSX.Element => {
     const router = useRouter();
     const doctor = useSelector((state: RootState) => state.doctor)
     const patient = useSelector((state: RootState) => state.patient)
+    const [path,setPath]= useState<string>("")
     const dipstach: AppDispatch = useDispatch()
-    const pathName = window.location.href
+    useEffect(()=>{
+        if (typeof window !== "undefined") {
+         setPath(window.location.href)}
+    },[])
     return (
-        <div className="nav-bar-container" style={{ display: pathName.includes("/doctorProfile") ? "none" : "flex" }}>
+        <div className="nav-bar-container" style={{ display: path.includes("/doctorProfile") ? "none" : "flex" }}>
             <div className="nav-logo">
                 <Image src={logo}  alt=""/>
                 <div className="title-health-care">

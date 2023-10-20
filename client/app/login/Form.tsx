@@ -22,6 +22,7 @@ function Form() {
     try {
       e.preventDefault();
       if (userType === "doctor") {
+        console.log("here")
         const res = await dispatch(
           doctorLogin({
             email,

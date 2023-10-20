@@ -1,16 +1,15 @@
 "use client"
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../store';
-import { addPatient, getPatient, selectPatient } from '../store/patientSlice';
+import { addPatient, getPatient, removePatient, selectPatient } from '../store/patientSlice';
 import "./patient.css"
 import Link from "next/link";
+import Image from 'next/image'
 
 
 const Page = () => {
-  const dispatch = useAppDispatch();
   const patients = useAppSelector(selectPatient);
-
-  console.log("these are patients", patients.data);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getPatient());
@@ -18,7 +17,7 @@ const Page = () => {
 
   return (
     <div>
-                <h1>List Patients</h1>
+                <h2 style={{textAlign:"center"}}>Patients List </h2>
                 <button  className='btnAdd'  style={{ backgroundColor: '#008CBA' }}  > <Link href="/addPatient"> + Ptients </Link> </button>
          
               
@@ -43,13 +42,20 @@ const Page = () => {
             <tbody>
               <tr className='tr'>
                 <th scope="row">{e.id}</th>
+                <th scope="row">
+               
+                  </th>
                 <td className='td'>{e.name}</td>
+
                 <td>{e.age}</td>
                 <td>{e.gender}</td>
                 <td>{e.phone}</td>
                 <td>{e.email}</td>
                 <td>{e.address}</td>
-                <button className='btnDelete' style={{ backgroundColor: 'red' }} >delete</button>
+                <button >block</button>
+                <button className='btnDelete' style={{ backgroundColor: 'red' }} onClick={(()=>{      console.log('this is if', e.id);
+                   dispatch(removePatient(e.id));
+                })} >delete</button>
               </tr>
             </tbody>
           </table>

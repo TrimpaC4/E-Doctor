@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import './review.css'
 import OneReviewComponent from "./OneReviewComponent";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../store/store";
-import { getReviewsByDocId } from "../../store/doctorSlice";
+import { AppDispatch, RootState } from "../../src/redux/store";
+import { getReviewsByDocId } from "../../src/redux/doctorSlice";
 
 const YasBar = () => {
     const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo);

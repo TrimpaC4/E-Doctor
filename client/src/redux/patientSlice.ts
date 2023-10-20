@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import prisma from "../../../server/prisma";
-import axios from "axios";
 
+import axios from "axios";
 interface PatientState {
   patientInfo: any;
   loading: boolean;
@@ -24,10 +23,11 @@ export const createPatient = createAsyncThunk(
   "createPatient",
   async (body: any) => {
     try {
-      const data = await axios.post("/api/patient/register", body);
+      console.log(body)
+      const data = await axios.post("http://localhost:5000/api/patient/register", {...body,phone:parseInt(body.phone)});
       return data.data;
     } catch (error) {
-      return error;
+      throw error;
     }
   }
 );
@@ -36,7 +36,7 @@ export const loginPatient = createAsyncThunk(
   "loginPatient",
   async (body: { email: string; password: string }) => {
     try {
-      const data = await axios.post("/api/patient/login", body);
+      const data = await axios.post("http://localhost:5000/api/patient/login", body);
       return data.data;
     } catch (error) {
       return error;
@@ -47,7 +47,7 @@ export const loginPatient = createAsyncThunk(
 export const getOnePatient = createAsyncThunk("getOnePatient", async () => {
   try {
     const token = localStorage.getItem("token");
-    const data = await axios.get("/api/patient/getOne", {
+    const data = await axios.get("http://localhost:5000/api/patient/getOne", {
       headers: {
         authorization: `Bearer ${token}`,
       },
