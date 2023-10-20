@@ -16,6 +16,7 @@ function LeadingMedicine({ doctor, date }: props) {
     const doc: any = useSelector((state: RootState) => state.doctor.doctorInfo)
     const patient: any = useSelector((state: RootState) => state.patient.patientInfo)
     const [disease, setDisease] = useState("")
+
     const handleAppointment = async (appo: any) => {
         try {
             const token = localStorage.getItem("token")
@@ -45,6 +46,7 @@ function LeadingMedicine({ doctor, date }: props) {
                   });
             } else {
                 const response = await axios.post("http://localhost:5000/api/appointment/add", appo);
+                console.log(response);
                 if (response.data.status === "pending") {
                     const userType = localStorage.getItem("type");
                     const res = await axios.put(`http://localhost:5000/api/doctor/schedule/up`, {
@@ -82,7 +84,9 @@ function LeadingMedicine({ doctor, date }: props) {
                 onChange={(e: any) => { setDisease(e.target.value) }}
                 className='d-flex w-80 ' placeholder='Disease' style={{ paddingLeft: "1.2rem", border: "none", borderRadius: "0.5rem", outline: "none", background: "#ECECEC" }} />
             <div
-                onClick={() => { handleAppointment({ disease, date, DoctorId: doctor.id, PatientId: doc.id || patient.id }) }}
+                onClick={() => { console.log("click");
+                handleAppointment({ disease, date, DoctorId: doctor.id, PatientId: doc.id || patient.id })
+             }}
                 className='d-flex btn-service-book-appointement w-80' style={{
                     padding: "0.5rem 2.5rem",
                     borderRadius: "0.3125rem",

@@ -2,6 +2,7 @@ const prisma = require("../prisma");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+<<<<<<< HEAD
 exports.getAll = async (req, res) => {
   try {
     const getAllAdmins = await prisma.admins.findMany({});
@@ -65,3 +66,33 @@ exports.signin = async (req, res) => {
       res.status(500).json({ message: "Server error" });
     }
   }; 
+=======
+module.exports = {
+    getAll: async (res, req) => {
+        try {
+            const getAdmin = await prisma.findMany(req.body);
+            res.json(getAdmin)
+        } catch (error) {
+            throw error
+        }
+    },
+    getOne: async (res, req) => {
+        try {
+            const getAdmin = await prisma.admins.findUnique(req.body);
+            res.json(getAdmin)
+        } catch (error) {
+            throw error
+        }
+    },
+   updatee : async (req, res) => {
+        try {
+            const result = await prisma.admins.update({ where: { id: req.params.id }, data:req.body })
+            res.status(201).send(result)
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
+    
+
+}
+>>>>>>> 33953ec9e1867a614dab7d806e45c970a93da199

@@ -27,8 +27,21 @@ import {
    export const addPatient = createAsyncThunk('api/patient', async (body:any) => {
     const response = await axios.post('http://localhost:5000/api/patient/register',body);
     return response.data;
-  })
+  });
+
+  export const removePatient = createAsyncThunk('api/patient', async (id:number,{dispatch})=>{  
+   try {console.log('this is id', id);
   
+    const response = await axios.delete(`http://localhost:5000/api/patient/${id}`); 
+  return (await (dispatch(getPatient()))).payload
+  }
+   catch(error) {
+    console.log(error);
+    
+   }
+  });
+  
+
   export const patientSlice = createSlice({
     name: 'patient',
     initialState,
@@ -39,9 +52,9 @@ import {
         .addCase(getPatient.pending, state => {
           state.pending = true;
         })
-        .addCase(getPatient.fulfilled, (state, { payload }) => {
+        .addCase(getPatient.fulfilled, (state,action ) => {
+          state.data = action.payload;
           state.pending = false;
-          state.data = payload;
         })
         .addCase(getPatient.rejected, state => {
           state.pending = false;

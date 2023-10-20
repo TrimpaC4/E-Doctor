@@ -12,6 +12,7 @@ import { RootState,AppDispatch} from "./../src/redux/store"
 import { useRouter } from "next/navigation"
 import { ReduxProvider } from "@/src/redux/provider"
 import { getAllDoctors } from "@/src/redux/doctorSlice" 
+
 var obj = {
     Neurologist: {
         para: "A neurologist is a medical doctor who specializes in the diagnosis and treatment of disorders that affect the nervous system. The nervous system is a complex network that includes the brain, spinal cord, and peripheral nerves. Neurologists are experts in the management of various neurological conditions",
@@ -54,9 +55,8 @@ const LandingPage = () => {
     const [name, setName] = useState<string>("")
     const dispatsh:AppDispatch = useDispatch()
     const [token, setToken] = useState<any>(localStorage.getItem('token'))
-    console.log(token);
     const { allDoctors } = useSelector((state: RootState) => state.doctor);
-    console.log(allDoctors)
+ 
     useEffect(()=>{
         dispatsh(getAllDoctors())
     },[])
@@ -109,12 +109,12 @@ const LandingPage = () => {
                             <input placeholder="Name" onChange={((e: any) => { setName(e.target.value) })} />
                             <input placeholder="Department" onChange={(e: any) => { setDepartment(e.target.value) }} />
                         </div>
-                        
+                         <Link href={{pathname:"/services",query:{department,name}}}>
                             <div
-                                className="sera-input" onClick={()=>{router.push(`/services=${department}&name=${name}`)}}>
+                                className="sera-input">
                                 Search
                             </div>
-                        
+                            </Link>
                     </div>
                 </div>
             </div>

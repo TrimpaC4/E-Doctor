@@ -55,16 +55,22 @@ var obj = {
         query?:queryType
       }
 
-const ServicePage = () => {
-    const router:routerType = useRouter()
-    const query=router.query
+const ServicePage = ({searchParams,}:{
+    searchParams:{
+        department:string,
+        name:string
+    }
+}) => {
+     const router = useRouter()
      const [department, setDepartment] = useState<string>("")
      const [name, setName] = useState<string>("")
     const [time, setTime] = useState<string>("")
     const [filtredDoctors, setFiltredDoctors] = useState([])
     const handleByDepartment = async (department: string, name: string) => {
         try {
-            const response = await axios.post(`http://localhost:5000/api/doctor/departmentFilter`, { department, name })
+            
+            const response = await axios.post(`http://localhost:5000/api/doctor/departmentFilter`,{department,name})
+            console.log(response.data)
             setFiltredDoctors(response.data)
             if (response.data.length > 0) {
                 window.scrollTo(0, 3000)
@@ -86,7 +92,8 @@ const ServicePage = () => {
     }
     const handleFilterDoctors = async (Department: string, Time: string) => {
         try {
-            const res = await axios.post("http://localhost:5000/api/doctor/getAvailable", { Department, Time })
+            console.log(department,time)
+            const res = await axios.post("http://localhost:5000/api/doctor/getAvailable", { department:Department, time:Time })
             setFiltredDoctors(res.data)
             if (res.data.length > 0) {
                 window.scrollTo(0, 3000)
@@ -97,9 +104,9 @@ const ServicePage = () => {
         }
     }
     useEffect(() => {
-        console.log(query?.department)
-        if (query?.department && query?.name) {
-          handleByDepartment(query?.department as string, query?.name as string)
+        console.log(searchParams?.department)
+        if (searchParams?.department && searchParams?.name) {
+          handleByDepartment(searchParams?.department as string, searchParams?.name as string)
         }
       }, [])
     return (
@@ -224,7 +231,7 @@ const ServicePage = () => {
                     <p style={{ color: "#555", fontWeight: "400" }}>Problems trying to reslove the conflict betwenn the two major realms of Classical physics Newtonian mechanics </p>
                 </div>
                 <div style={{ padding: "0rem 4rem 1rem 7rem" }} className="all-leading-cards-container d-flex flex-wrap gap-4 ">
-                    {filtredDoctors.map((doctor: any, i: any) => <LeadingMedicine key={i} doctor={doctor} date={time} />)}
+                    {filtredDoctors?.map((doctor: any, i: any) => <LeadingMedicine key={i} doctor={doctor} date={time} />)}
 
                 </div>
             </div>
