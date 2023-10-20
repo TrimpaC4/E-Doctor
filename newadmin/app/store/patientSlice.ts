@@ -40,6 +40,19 @@ import {
     
    }
   });
+
+  export const updatePatient = createAsyncThunk('api/patient', async (id:number, {dispatch})=>{  
+   try {console.log('this is id', id);
+  
+    const response = await axios.put(`http://localhost:5000/api/patient/setBlocked/${id}`); 
+  return (await (dispatch(getPatient()))).payload
+  }
+   catch(error) {
+    console.log(error);
+    
+   }
+  });
+  
   
 
   export const patientSlice = createSlice({

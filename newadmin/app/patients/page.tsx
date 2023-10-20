@@ -1,18 +1,19 @@
 "use client"
 import React, { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../store';
-import { addPatient, getPatient, removePatient, selectPatient } from '../store/patientSlice';
+import { RootState, useAppDispatch, useAppSelector } from '../store';
+import { addPatient,  getPatient, removePatient, selectPatient, updatePatient } from '../store/patientSlice';
 import "./patient.css"
 import Link from "next/link";
 import Image from 'next/image'
+import { useSelector } from 'react-redux';
 
 
 const Page = () => {
   const patients = useAppSelector(selectPatient);
   const dispatch = useAppDispatch();
-
+  console.log(patients.data)
   useEffect(() => {
-    dispatch(getPatient());
+    dispatch(getPatient())
   }, [dispatch]);
 
   return (
@@ -21,7 +22,7 @@ const Page = () => {
                 <button  className='btnAdd'  style={{ backgroundColor: '#008CBA' }}  > <Link href="/addPatient"> + Ptients </Link> </button>
          
               
-              <div className='tablee' >
+              <div className='tablee'>
    <table className="table">
    <tr>
                 <th scope="col"></th>
@@ -52,7 +53,12 @@ const Page = () => {
                 <td>{e.phone}</td>
                 <td>{e.email}</td>
                 <td>{e.address}</td>
-                <button >block</button>
+                {e.isBlocked ? <button onClick={()=>{
+                  dispatch(updatePatient(e.id))
+                }} >Unblock</button> : <button onClick={()=>{
+                  dispatch(updatePatient(e.id))
+                }} >block</button>}
+
                 <button className='btnDelete' style={{ backgroundColor: 'red' }} onClick={(()=>{      console.log('this is if', e.id);
                    dispatch(removePatient(e.id));
                 })} >delete</button>
