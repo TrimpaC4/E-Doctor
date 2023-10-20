@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../src/redux/store';
 const DonePatients = () => {
   const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo)
-  const appointments = doctor.Appointments || []
+  const appointments = doctor.appointments || []
   const ellipsis = faEllipsisVertical as IconProp;
   return (
     <div className="DoctorProfile-bottom">
@@ -31,27 +31,30 @@ const DonePatients = () => {
           </tr>
         </thead>
         <tbody>
+          
           {
-            appointments?.map((appo: any, i: number) => appo.isFinished ?
+           
+            
+            appointments?.map((appo: any, i: number) => !appo.isFinished ?
               <tr key={i} >
                 <th scope="row" className="DoctorProfile-th">
                   <div className="DoctorProfile-patient-done">
                     <div className="DoctorProfile-image-frame3">
                       <img
-                        src={appo.Patient.avatarUrl}
+                        src={appo.patients.avatarUrl}
                         alt=""
                       />
                     </div>
                     <div className="DoctorProfile-appointment-requests-list-container-request-details">
                       <span className="DoctorProfile-appointment-requests-list-container-request-details-name">
-                        {appo.Patient.name}
+                        {appo.patients.name}
                       </span>
                     </div>
                   </div>
                 </th>
                 <td>{appo.id}</td>
                 <td>{appo.date}</td>
-                <td>{appo.Patient.gender.toUpperCase()}</td>
+                <td>{appo.patients.gender.toUpperCase()}</td>
                 <td>{appo.disease.slice(0, 10)}...</td>
                 <td>Out-Patient</td>
                 <td>
