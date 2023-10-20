@@ -2,7 +2,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { Op, where } = require("sequelize");
-const prisma = require("../prisma/prisma");
+const prisma = require("../prisma");
 
 module.exports.register = async (req, res) => {
     try {
