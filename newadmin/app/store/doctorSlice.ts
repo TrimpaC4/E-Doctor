@@ -112,6 +112,18 @@ export const removeDoctor = createAsyncThunk('api/doctor', async (id:number,{dis
   }
  });
 
+//  export const updateDoctorVerification = createAsyncThunk(
+//   'doctor/updateDoctorVerification',
+//   async ({ doctorId, isVerified }: { doctorId: number, isVerified: boolean }, thunkAPI) => {
+//     try {
+//       const response = await axios.put(`/api/doctors/${doctorId}/verify`, { isVerified });
+//       return response.data;
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
+// );
+
 const doctorSlice = createSlice({
   name: "DoctorSlice",
   initialState,
