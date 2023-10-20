@@ -19,6 +19,7 @@
     "cloudinary": "^1.41.0",
     "cloudinary-core": "^2.13.0",
     "cloudinary-react": "^1.8.1",
+    "mdb-react-ui-kit": "^6.3.0",
     "next": "13.5.5",
     "next-redux-wrapper": "^8.1.0",
     "react": "^18",
