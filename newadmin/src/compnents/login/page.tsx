@@ -3,8 +3,10 @@
 import LoginStyle from "./Login.module.css";
 import { useState } from "react";
 import axios from 'axios';
+import { useRouter } from "next/navigation";
 
 const Login: React.FC = () => {
+  const router = useRouter();
   const [emailInput, setEmailInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [message, setMessage] = useState('');
@@ -26,6 +28,7 @@ const Login: React.FC = () => {
       
       if (response.status === 200) {
         const data = response.data;
+        router.push('/homee');
         if (data.success) {
           setMessage('Sign-in successful');
         } else {
