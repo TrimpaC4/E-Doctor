@@ -4,6 +4,7 @@ import './globals.css'
 import Script from 'next/script'
 const inter = Inter({ subsets: ['latin'] })
 import { ReduxProvider } from './store/provider'
+import Navbar from './navbar/page'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -23,7 +24,10 @@ export default function RootLayout({
       </head>
 
       <body className={inter.className}>
-      <ReduxProvider >{children}</ReduxProvider>  
+      <ReduxProvider >
+        <Navbar />
+        {children}
+      </ReduxProvider>  
         <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossOrigin="anonymous"></Script>
        
       </body>
