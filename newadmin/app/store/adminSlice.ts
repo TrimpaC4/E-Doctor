@@ -17,11 +17,11 @@ import {
     pending: false,
     error: false,
   };
-
-  export const updatePatient = createAsyncThunk('api/AdminDoc', async (id:number,body:any) => {
-    const response = await axios.put(`http://localhost:5000/api/AdminDoc/${id}`,body);
-    return response.data;
-  });
+//  export const getOneAdmin = createAsyncThunk('api/Admin'
+//   export const updatePatient = createAsyncThunk('api/AdminDoc', async (id:number,body:any) => {
+//     const response = await axios.put(`http://localhost:5000/api/AdminDoc/${id}`,body);
+//     return response.data;
+//   });
   
 
   export const adminSlice = createSlice({
