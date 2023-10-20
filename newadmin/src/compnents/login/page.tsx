@@ -2,10 +2,14 @@
 
 import LoginStyle from "./Login.module.css";
 import { useState } from "react";
+import axios from 'axios';
+import { useRouter } from "next/navigation";
 
 const Login: React.FC = () => {
+  const router = useRouter();
   const [emailInput, setEmailInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
+  const [message, setMessage] = useState('');
 
   const handleEmailInput = (input: React.ChangeEvent<HTMLInputElement>) => {
     setEmailInput(input.target.value);
@@ -14,6 +18,32 @@ const Login: React.FC = () => {
   const handlePasswordInput = (input: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordInput(input.target.value);
   };
+
+  const handleSignIn = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/api/AdminDoc/signin', {
+        email: emailInput,  // Assuming your API expects "email" and "password" properties
+        password: passwordInput,
+      });
+      
+      if (response.status === 200) {
+        const data = response.data;
+        router.push('/homee');
+        if (data.success) {
+          setMessage('Sign-in successful');
+        } else {
+          setMessage(data.message);
+        }
+      } else {
+        setMessage('An error occurred');
+      }
+    } catch (error) {
+      console.error(error);
+      setMessage('An error occurred');
+    }
+  };
+  
+
 
   return (
     <div className={LoginStyle.AdminLoginMainContainer}>
@@ -34,7 +64,7 @@ const Login: React.FC = () => {
             onChange={handlePasswordInput}
           ></input>
         </div>
-        <button>Sign in</button>
+        <button onClick={handleSignIn}>Sign in</button>
       </div>
     </div>
   );

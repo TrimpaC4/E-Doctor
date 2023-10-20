@@ -1,14 +1,9 @@
 const express = require("express");
+const { getAll ,signin, signup } = require("../controllers/admin.controller");
 const AdminDocRouter = express.Router();
 
-const { getAll,updatee} = require("../controllers/admin.controller");
-// const authProtection = require("../midlwares/authmidalwre.js");
-
 AdminDocRouter.get("/all", getAll);
-// AdminDocRouter.get("/:id", getOne);
-// AdminDocRouter.post("/add", create);
-// AdminDocRouter.delete("/:id", remove);
-AdminDocRouter.put("/:id", updatee);
+AdminDocRouter.post('/signup', signup);
+AdminDocRouter.post('/signin', signin);
 
-
-module.exports =  AdminDocRouter
+module.exports = AdminDocRouter;

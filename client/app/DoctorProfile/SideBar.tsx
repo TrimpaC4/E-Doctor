@@ -73,7 +73,7 @@ const SideBar = () => {
               />
               Schedule Timings
             </li>
-            <li>
+            <li onClick={() => navigate.push("/doctorProfile/payment")}>
               <FontAwesomeIcon
                 className="DoctorProfile-icon"
                 icon={creditCard}
