@@ -104,7 +104,7 @@ module.exports.deleteOne = async (req, res) => {
 module.exports.updateOne = async (req, res) => {
   try {
     const result = await prisma.doctors.update({
-      where: { id: req.params.id },
+      where: { id: +req.params.id },
       data: req.body,
     });
     res.status(201).send(result);
@@ -113,22 +113,21 @@ module.exports.updateOne = async (req, res) => {
   }
 };
 
-// module.exports.verifyDoctor = async (req, res) => {
-//     try {
-//       const { doctorId } = req.params;
-//       const { isVerified } = req.body;
-//       const updatedDoctor = await prisma.doctors.update({
-//         where: { id: +doctorId },
-//         data: { isVerified },
-//       });
-//       res.status(200).json(updatedDoctor);
-//     } catch (error) {
-//       res.status(500).send({
-//         message: "Error updating doctor verification status",
-//         error,
-//       });
-//     }
-//   };
+module.exports.verifyDoctor = async (req, res) => {
+    try {
+      const { isVerified } = req.body;
+      const updatedDoctor = await prisma.doctors.update({
+        where: { id: req.params.id },
+        data: { isVerified },
+      });
+      res.status(200).json(updatedDoctor);
+    } catch (error) {
+      res.status(500).send({
+        message: "Error updating doctor verification status",
+        error,
+      });
+    }
+  };
 
 
 
