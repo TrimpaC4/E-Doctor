@@ -1,9 +1,10 @@
 "use client"
 import mapboxgl from 'mapbox-gl';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import geoJson from './chicago-parks.json';
 import './Map.css';
+
 
 mapboxgl.accessToken =
   'pk.eyJ1IjoiYXltZW4xMDEwIiwiYSI6ImNsbncwbDdlNzAyaHQycmxlOWRyaWFkemwifQ.EH5vbilYH63oHQEaf62AIA';
@@ -19,16 +20,21 @@ interface mapStyle{
     zoom: any
 }
 
-
 const Map = () => {
+  const [Lat,setLat] = useState<number>(0)
+  const [Long,setLong] = useState<number>(0)
+  console.log(Lat);
+  console.log(Long);
   const mapContainerRef :any= useRef(null);
+
+  
 
   // Initialize map when component mounts
   useEffect(() => {
     const map :any= new mapboxgl.Map({
       container: mapContainerRef.current,
       style: "mapbox://styles/mapbox/streets-v11",
-      center: [-87.65, 41.84],
+      center: [Long,Lat],
       zoom: 10,
     });
 
@@ -64,13 +70,34 @@ const Map = () => {
         }
       );
     });
+    const options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0,
+    };
+    // current position
+    function success(pos:any) {
+      const crd = pos.coords;
+      console.log("Your current position is:");
+      console.log(`Latitude : ${crd.latitude}`);
+      console.log(`Longitude: ${crd.longitude}`);
+      setLat(crd.latitude)
+      setLong(crd.longitude)
+      console.log(`More or less ${crd.accuracy} meters.`);
+    }
+    
+    function error(err:any) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+    
+    navigator.geolocation.getCurrentPosition(success, error, options);
 
     // Add navigation control (the +/- zoom buttons)
     map.addControl(new mapboxgl.NavigationControl(), "top-right");
 
     // Clean up on unmount
     return () => map.remove();
-  }, []);
+  }, [Lat,Long]);
 
   return <div className="map-container" ref={mapContainerRef} />;
 };
