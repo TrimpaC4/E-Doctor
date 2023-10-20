@@ -6,6 +6,7 @@ const authProtection = require("../midlwares/authmidalwre.js");
 patientRouter.get("/getAll", patientController.getAll);
 patientRouter.get("/getOne", authProtection, patientController.getOne);
 patientRouter.put("/:id", patientController.Update);
+patientRouter.put("/setBlocked/:id", patientController.UpdateBlock)
 patientRouter.delete("/:id", patientController.remove);
 patientRouter.post("/login", patientController.login);
 patientRouter.post("/register", patientController.register);
