@@ -1,16 +1,14 @@
 import React from 'react'
 import "./style.css"
 import OnePatient from './OnePatient'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../../src/redux/store'
-
-import { ReduxProvider } from "@/src/redux/provider";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../src/redux/store";
+import { ReduxProvider } from '@/src/redux/provider'
 
 const AllPatients = () => {
-  // const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo)
-
+  const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo)
   return (
-    <ReduxProvider>
+    
     <div className='Patients-content'>
       <div className='Patients-container'>
         <div className='Patients-container-header'>
@@ -24,7 +22,7 @@ const AllPatients = () => {
         {/* { doctor.Appointments?.map((appo: any, i: number) => appo.isFinished ? < OnePatient key={i} appo={appo} /> : null)} */}
       </div>
     </div>
-    </ReduxProvider>
+
   )
 }
 
