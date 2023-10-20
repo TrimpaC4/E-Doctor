@@ -30,9 +30,10 @@
     cursor: pointer;
 
 }
-.h1 { 
-    font-size: 24px;
+.h2 { 
+    font-size: 90px;
   margin-bottom: 20px;
+   
 } 
 .btnAdd {
     background-color: #008CBA;

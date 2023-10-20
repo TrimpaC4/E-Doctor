@@ -7,6 +7,8 @@ interface appProps {
   appo: any
 }
 const OnePatient = ({ appo }: appProps) => {
+  console.log(appo);
+  
   const ellipsis = faEllipsisVertical as IconProp;
   return (
 

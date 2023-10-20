@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.input_main_container {
+    background-image: url('https://img.freepik.com/free-vector/white-background-with-triangle-patterns_1017-18410.jpg?w=2000');
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+}
+
+.input_container { 
+    background-color: rgb(255, 255, 255);
+    width: 30vw;
+    height: 86vh;
+    border-radius: 16px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    position: relative;
+}
+
+.inputt  {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    width: 30vw;
+    height: 86vh;
+    gap: 1.75rem;
+    border-radius: 16px;
+    position: absolute;
+}
+
+.inputt > input {
+    /* background-color: black; */
+    height: 5vh;
+    width: 25vw;
+    border-radius: 8px;
+    border: 3px solid rgba(0, 94, 44, 0.247);
+    padding: 1rem 1.5rem;
+    transition: 0.2s ease-in-out;
+    font-size: 18px;
+}
+
+.inputt > input:focus {
+    border:  3px solid rgba(0, 124, 58, 0.741);
+    outline: none !important;
+}
+
+.inputt > button {
+    background-color: #238c93;
+    border: none;
+    height: 5vh;
+    width: 8vw;
+    border-radius: 8px;
+    color: white;
+    font-size:20px;
+    transition: 0.1s ease-in;
+}
+
+.inputt > button:hover {
+    background-color: #238b93bb;
+}

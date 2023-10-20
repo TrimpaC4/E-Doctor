@@ -19,14 +19,16 @@ const AllAppointments = () => {
       dispatch(getOneDoctor())
     }
   }, [])  
+  
+  console.log(doctor.appointments);
+  
   const type = localStorage.getItem('type');
   return (
     <div className="appointments-container">
       {type === "patient" ?
-        patient.Appointments?.map((appo: any, i: number) => !appo.isFinished ? <OneAppointment key={i} appo={appo} /> : null) :
-        doctor.Appointments?.map((appo: any, i: number) => !appo.isFinished ? < OneAppointment key={i} appo={appo} /> : null)
+        patient.appointments?.map((appo: any, i: number) => !appo.isFinished ? <OneAppointment key={i} appo={appo} /> : null) :
+        doctor.appointments?.map((appo: any, i: number) => !appo.isFinished ? < OneAppointment key={i} appo={appo} /> : null)
       }
-      hello
     </div>
   )
 }
