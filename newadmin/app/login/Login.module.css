@@ -1,0 +1,61 @@
+.AdminLoginMainContainer {
+    background-image: url('../assets/LoginBg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat; 
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    font-family: 'Poppins', sans-serif;
+}
+
+.LoginMainContainer {
+    background-color: #238c93;
+    height: 70vh;
+    width: 60vw;
+    max-width: 60vh;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10vh;
+}
+
+.LoginMainContainer > p {
+    color: rgba(255, 255, 255, 0.901);
+    font-size: 3.3rem;
+}
+
+.LoginInputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3vh;
+    width: 25vw;
+}
+.LoginInputs > input {
+    height: 5vh;
+    width: 23vw;
+    padding: 0rem 1.25rem;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    border: none;
+}
+
+.LoginInputs > input:focus {
+    outline: none;
+}
+
+.LoginMainContainer > button {
+    background-color: white;
+    border: none;
+    height: 6vh;
+    width: 10vw;
+    border-radius: 4px;
+    font-size: 1.75rem;
+    color: #198c95;
+}
