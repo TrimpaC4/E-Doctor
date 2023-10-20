@@ -1,4 +1,4 @@
-const prisma = require("../prisma/prisma");
+const prisma = require("../prisma");
 module.exports.addReview = async (req, res) => {
   try {
     const toPost = await prisma.reviews.create({data:req.body});

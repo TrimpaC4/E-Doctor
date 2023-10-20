@@ -1,0 +1,9 @@
+.dashboard_main_container {
+    background-color: #051139;
+    width: 100%;    
+    height: auto;
+}
+
+.chart-canvas{
+    height: 10vh;
+}
