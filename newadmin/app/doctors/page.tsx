@@ -29,7 +29,7 @@ const DoctorsList = () => {
     <div>
       <Navbar />
     <div style={{ display: 'grid', flexWrap: 'wrap', justifyContent: 'center', gridTemplateColumns:'auto auto auto auto' }}>
-      {allDoctors.map((doctor: doctorType, i: number) => (
+      {allDoctors.map((doctor: doctorType) => (
         <Card key={doctor.id} sx={{ maxWidth: 345, margin: '10px' }}>
           <CardMedia component="img"  image={doctor.avatarUrl} alt={doctor.name} className='images'/>
           <CardContent>
@@ -42,7 +42,7 @@ const DoctorsList = () => {
           </CardContent>
           <CardActions>
             <Button size="small">Verify</Button>
-            <Button size="small"onClick={(()=>{
+            <Button size="small" onClick={(()=>{
               dispatch(removeDoctor(doctor.id))
             })}>Delete</Button>
           </CardActions>

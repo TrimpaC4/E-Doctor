@@ -108,6 +108,23 @@ module.exports.updateOne = async (req, res) => {
     }
 };
 
+// module.exports.verifyDoctor = async (req, res) => {
+//     try {
+//       const { doctorId } = req.params;
+//       const { isVerified } = req.body;
+//       const updatedDoctor = await prisma.doctors.update({
+//         where: { id: +doctorId },
+//         data: { isVerified },
+//       });
+//       res.status(200).json(updatedDoctor);
+//     } catch (error) {
+//       res.status(500).send({
+//         message: "Error updating doctor verification status",
+//         error,
+//       });
+//     }
+//   };
+
 
 
 
