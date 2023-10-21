@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   MDBCol,
   MDBContainer,
@@ -19,10 +19,19 @@ import {
 } from 'mdb-react-ui-kit';
 import Navbar from "../navbar/page";
 import { useSearchParams } from 'next/navigation';
-import { useSelector } from 'react-redux';
-import { RootState } from '../store';
 import { log } from 'console';
+import { useSelector, useDispatch } from "react-redux";
+import { AppDispatch, RootState } from "../store";
+import {
+  getAllDoctors,
+  removeDoctor,
+  updateDoctorVerification,
+} from "../store/doctorSlice";
 const page = () => {
+  const dispatch: AppDispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllDoctors());
+  }, []);
     const searchParams = useSearchParams();
     const id = searchParams.get('id');
     console.log("this is doctor",searchParams.get('id'))
@@ -55,8 +64,18 @@ const page = () => {
                 <p className="text-muted mb-1">{doctor?.department}</p>
                 <p className="text-muted mb-4">{doctor?.address}</p>
                 <div className="d-flex justify-content-center mb-2">
-                  <MDBBtn>Follow</MDBBtn>
-                  <MDBBtn outline className="ms-1">Message</MDBBtn>
+                  {!!doctor?.isVerified ? (
+                <i style={{fontSize:"24px"}} className  ="fa">&#xf058;</i>
+              ) : (
+                  <MDBBtn outline className="ms-1" onClick={() => {
+                    dispatch(
+                      updateDoctorVerification({
+                        doctorId: doctor?.id,
+                        isVerified: true,
+                      })
+                    );
+                  }}>Verify</MDBBtn>
+                  )}
                 </div>
               </MDBCardBody>
             </MDBCard>

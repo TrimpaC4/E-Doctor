@@ -65,7 +65,7 @@ const DoctorsList = () => {
               </Typography>
             </CardContent>
             <CardActions>
-              {!!doctor.isVerified ? (
+              {/* {!!doctor.isVerified ? (
                 <i style={{fontSize:"24px"}} className  ="fa">&#xf058;</i>
               ) : (
                 <Button
@@ -81,7 +81,7 @@ const DoctorsList = () => {
                 >
                   Verify
                 </Button>
-              )}
+              )} */}
               <Button
                 size="small"
                 onClick={() => {

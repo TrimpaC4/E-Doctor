@@ -14,7 +14,7 @@ interface doctorType {
 }
 
 interface doctorType2 {
-  doctorId: number;
+  doctorId: any;
   isVerified: boolean
 }
 interface DoctorState {
