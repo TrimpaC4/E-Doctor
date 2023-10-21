@@ -58,7 +58,7 @@ const SideBar = () => {
               />
               Appointment
             </li>
-            <li onClick={() => navigate.push("/doctorProfile/patients")}>
+            <li onClick={() => navigate.push("/DoctorProfile/patients")}>
               <FontAwesomeIcon
                 className="DoctorProfile-icon"
                 icon={user}
@@ -66,7 +66,7 @@ const SideBar = () => {
               />
               My Patients
             </li>
-            <li onClick={() => navigate.push("/doctorProfile/schedule")}>
+            <li onClick={() => navigate.push("/DoctorProfile/schedule")}>
               <FontAwesomeIcon
                 className="DoctorProfile-icon"
                 icon={clock}
@@ -74,7 +74,7 @@ const SideBar = () => {
               />
               Schedule Timings
             </li>
-            <li onClick={() => navigate.push("/doctorProfile/payment")}>
+            <li onClick={() => navigate.push("/DoctorProfile/payment")}>
               <FontAwesomeIcon
                 className="DoctorProfile-icon"
                 icon={creditCard}
@@ -82,7 +82,7 @@ const SideBar = () => {
               />
               Payments
             </li>
-            <li onClick={() => navigate.push("/doctorProfile/docChat")}>
+            <li onClick={() => navigate.push("/DoctorProfile/docChat")}>
               <FontAwesomeIcon
                 className="DoctorProfile-icon"
                 icon={message}
@@ -90,7 +90,7 @@ const SideBar = () => {
               />
               Message
             </li>
-            <li onClick={() => navigate.push("/doctorProfile/review")}>
+            <li onClick={() => navigate.push("/DoctorProfile/review")}>
               <FontAwesomeIcon
                 className="DoctorProfile-icon"
                 icon={blog}
@@ -111,7 +111,7 @@ const SideBar = () => {
           </div>
 
           <ul className="DoctorProfile-menu">
-            <li onClick={() => navigate.push("/doctorProfile/appointments")}>
+            <li onClick={() => navigate.push("/DoctorProfile/appointments")}>
               <FontAwesomeIcon
                 className="DoctorProfile-icon"
                 icon={calendar}
@@ -127,7 +127,7 @@ const SideBar = () => {
               />
               Payments
             </li>
-            <li onClick={() => navigate.push("/doctorProfile/docChat")}>
+            <li onClick={() => navigate.push("/DoctorProfile/docChat")}>
               <FontAwesomeIcon
                 className="DoctorProfile-icon"
                 icon={message}

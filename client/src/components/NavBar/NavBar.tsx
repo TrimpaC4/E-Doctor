@@ -21,7 +21,7 @@ const NavBar = (): React.JSX.Element => {
          setPath(window.location.href)}
     },[])
     return (
-        <div className="nav-bar-container" style={{ display: path.includes("/doctorProfile") ? "none" : "flex" }}>
+        <div className="nav-bar-container" style={{ display: path.includes("/DoctorProfile") ? "none" : "flex" }}>
             <div className="nav-logo">
                 <Image src={logo}  alt=""/>
                 <div className="title-health-care">
@@ -47,8 +47,8 @@ const NavBar = (): React.JSX.Element => {
                     !doctor.isAuthenticated && !patient.isAuthenticated ?
                         router.push("/register") :
                         patient.isAuthenticated ?
-                        router.push("/doctorProfile/docChat") : 
-                        router.push("/doctorProfile") 
+                        router.push("/DoctorProfile/docChat") : 
+                        router.push("/DoctorProfile") 
 
                 }}>{!doctor.isAuthenticated && !patient.isAuthenticated ? "Sign Up" : doctor.isAuthenticated?"Profile" : "Messages"}</button>
                 <button onClick={() => {
