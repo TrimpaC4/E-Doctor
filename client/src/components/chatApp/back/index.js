@@ -17,6 +17,8 @@ const io = new Server(server, {
 let a=app.listen(3002, () => console.log(`listening on port 3002 `));
 io.listen(a)
 
+
+
 io.on('connection', (socket) => {
     console.log(`User connected: ${socket.id}`);
     socket.join("room")

@@ -11,19 +11,51 @@ module.exports.makeRoom = async (req, res) => {
 module.exports.getAllRoomsForPatient = async (req, res) => {
   try {
     const patRooms = await prisma.rooms.findMany({
-      where: { PatientId: req.params.patId },
-      include: { messages:true ,doctors:true,patients:true },
+      where: { PatientId: parseInt(req.params.patId) },
+      include: {
+        messages: true,
+        doctors: {
+          select: {
+            avatarUrl: true,
+            name: true,
+            id: true,
+          },
+        },
+        patients: {
+          select: {
+            avatarUrl: true,
+            name: true,
+            id: true,
+          },
+        },
+      },
     });
     res.status(200).json(patRooms);
   } catch (error) {
-    res.json(error);
+    throw error;
   }
 };
 module.exports.getAllRoomsForDoctor = async (req, res) => {
   try {
     const docRooms = await prisma.rooms.findMany({
-      where: { DoctorId: req.params.docId },
-      include: { patients: true, doctors: true },
+      where: { DoctorId: parseInt(req.params.docId) },
+      include: {
+        messages: true,
+        doctors: {
+          select: {
+            avatarUrl: true,
+            name: true,
+            id: true,
+          },
+        },
+        patients: {
+          select: {
+            avatarUrl: true,
+            name: true,
+            id: true,
+          },
+        },
+      },
     });
     res.status(200).json(docRooms);
   } catch (error) {
@@ -41,3 +73,12 @@ module.exports.getByRoomId = async (req, res) => {
     res.json(error);
   }
 };
+
+module.exports.del = async (req, res) => {
+  try{
+    const a=await prisma.rooms.deleteMany({})
+    res.json(a)
+  } catch(e){
+    throw e
+  }
+}

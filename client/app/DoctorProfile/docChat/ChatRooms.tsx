@@ -1,90 +1,119 @@
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/src/redux/store";
+import axios from "axios";
+import Chat from "../../../src/components/chatApp/front/page";
 
-import React, { useEffect, useState } from 'react';
-import "./style.css"
-import axios from 'axios';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../src/redux/store';
-interface props {
-  setUpdate: any;
-  udpate: boolean;
-}
-const ChatRooms = ({ setUpdate, udpate }: props) => {
-  const [chatRooms, setChatRooms] = useState<any[]>([])
-  const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo);
-  const patient: any = useSelector((state: RootState) => state.patient.patientInfo);
-  const type = localStorage.getItem('type')
+function ChatRooms() {
+  const [user, setUser] = useState<any>({});
+  const [doctors, setDoctors] = useState<any>([]);
+  const [patients, setPatients] = useState<any>([]);
+  const [rooms, setRooms] = useState<any>([]);
+  const [currentRoom, setCurrentRoom] = useState<any>({});
+  const [openConvo, setOpenConvo] = useState(false);
 
-
-  const getAllchatRooms = async () => {
-    try {
-      const type = localStorage.getItem('type')
-      if (type === 'doctor') {
-        const res = await axios.get(`http://localhost:5000/api/room/getAllDoc/${doctor.id}`)
-        setChatRooms(res.data)
-      } else if (type === "patient") {
-        const res = await axios.get(`http://localhost:5000/api/room/getAllPat/${patient.id}`)
-        setChatRooms(res.data)
-      }
-    } catch (error) {
-      console.log(error);
+  const fetch = async () => {
+    const token = localStorage.getItem("token");
+    if (localStorage.getItem("type") === "patient") {
+      let person = (
+        await axios.get("http://localhost:5000/api/patient/getOne", {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        })
+      ).data;
+      setUser(person);
+      let rms = (
+        await axios.get(`http://localhost:5000/api/room/GetAllPat/${user.id}`)
+      ).data;
+      setRooms(rms);
+      let docs = (await axios.get("http://localhost:5000/api/doctor/getAll"))
+        .data;
+      setDoctors(docs);
+    } else if (localStorage.getItem("type") === "doctor") {
+      let person = (
+        await axios.get("http://localhost:5000/api/doctor/getOne", {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        })
+      ).data;
+      setUser(person);
+      let rms = (
+        await axios.get(`http://localhost:5000/api/room/GetAllDoc/${user.id}`)
+      ).data;
+      setRooms(rms);
+      let pats = (await axios.get("http://localhost:5000/api/patient/getAll"))
+        .data;
+      setPatients(pats);
     }
-  }
+  };
+
+  const createRoom = async (docId: any, patId: any) => {
+    console.log("here");
+
+    await axios
+      .post("http://localhost:5000/api/room/makeRoom", {
+        PatientId: parseInt(patId),
+        DoctorId: parseInt(docId),
+      })
+      .then(() => {
+        fetch();
+      });
+  };
+
   useEffect(() => {
-    getAllchatRooms()
-  }, [])
-
+    fetch();
+    console.log(user);
+    console.log(rooms);
+  }, []);
   return (
-    <div className="hre col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0 bordered">
-      <div className="p-3">
-        <div className="input-group rounded mb-3">
-          <input
-            type="search"
-            className="form-control rounded"
-            placeholder="Search"
-            aria-label="Search"
-            aria-describedby="search-addon"
-          />
-          <span className="input-group-text border-0" id="search-addon">
-            <i className="fas fa-search"></i>
-          </span>
-        </div>
-        <div data-mdb-perfect-scrollbar="true" className='container_rooms' style={{ position: 'relative', height: '400px' }}>
-          <ul className="list-unstyled mb-0">
-
-            {
-              chatRooms?.map((room) =>
-                <li
-                  onClick={() => { localStorage.setItem('roomId', room.id); setUpdate(!udpate) }}
-                  key={room.id}
-                  className="p-2 border-bottom">
-                  <a className="d-flex justify-content-between">
-                    <div className="d-flex flex-row">
-                      <div>
-                        <img
-                          src={type === "doctor" ? room.Patient.avatarUrl : room.Doctor.avatarUrl}
-                          alt="avatar"
-                          className="d-flex align-self-center me-3"
-                          width="60"
-                        />
-                        <span className="badge bg-success badge-dot"></span>
-                      </div>
-                      <div className="pt-1">
-                        <p className="fw-bold mb-0">{type === "doctor" ? room.Patient.name : room.Doctor.name}</p>
-                        <p className="small text-muted">{room.Messages[room.Messages.length - 1]?.content}</p>
-                      </div>
-                    </div>
-                    <div className="pt-1">
-                    </div>
-                  </a>
-                </li>)
-            }
-
-
-          </ul>
-        </div>
+    <div className="chatList">
+      {rooms.map((room: any) => {
+        return (
+          <div
+            onClick={() => {
+              setCurrentRoom(room);
+              setOpenConvo(true);
+            }}
+          >
+            Conversation between you and{" "}
+            {localStorage.getItem("type") === "doctor"
+              ? room.patients.name
+              : room.doctors.name}
+          </div>
+        );
+      })}
+      <div>
+        <select name="" id="" onChange={(e)=>{
+          console.log("aaaa");
+          
+          createRoom(user.id, e.target.value);
+        }}>
+          {localStorage.getItem("type") === "doctor"
+            ? patients.map((patient: any) => {
+                return (
+                  <option
+                    value={patient.id}
+                  >
+                    {patient.name}
+                  </option>
+                );
+              })
+            : doctors.map((doctor: any) => {
+                return (
+                  <option
+                    value={doctor.id}
+                  >
+                    {doctor.name}
+                  </option>
+                );
+              })}
+        </select>
       </div>
+      {/* {openConvo ? <Chat messages={currentRoom.messages} room={currentRoom} /> : null} */}
     </div>
   );
-};
+}
 
 export default ChatRooms;
