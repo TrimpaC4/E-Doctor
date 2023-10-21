@@ -15,6 +15,7 @@ const DoctorProfile = ({
   children: React.ReactNode;
 }): React.JSX.Element => {
   const dispatch: AppDispatch = useDispatch();
+  
   useEffect(() => {
     const type = localStorage.getItem("type");
     if (type === "patient") {
