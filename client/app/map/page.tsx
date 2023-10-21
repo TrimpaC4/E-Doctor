@@ -13,6 +13,7 @@ mapboxgl.accessToken =
     children?: React.ReactNode; // Make 'children' optional
     feature: any; // Add a more specific type for the 'feature' prop
   }
+
 interface mapStyle{
     container: any
     style: any
@@ -26,7 +27,11 @@ const Map = () => {
   console.log(Lat);
   console.log(Long);
   const mapContainerRef :any= useRef(null);
-
+  const options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0,
+  };
   
 
   // Initialize map when component mounts
@@ -76,6 +81,7 @@ const Map = () => {
       maximumAge: 0,
     };
     // current position
+    
     function success(pos:any) {
       const crd = pos.coords;
       console.log("Your current position is:");
