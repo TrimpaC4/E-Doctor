@@ -13,6 +13,7 @@ import { getOneDoctor } from "../../../src/redux/doctorSlice";
 import "./style.css"
 const Overview = () => {
   const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo);
+  console.log(doctor)
   const dispatch: AppDispatch = useDispatch()
   useEffect(() => {
     const type = localStorage.getItem("type")

@@ -17,10 +17,10 @@ import { RootState } from "../../src/redux/store";
 import { useRouter } from "next/navigation";
 
 const SideBar = () => {
+
   const navigate = useRouter();
   const patient = useSelector((state: RootState) => state.patient);
   const doctor = useSelector((state: RootState) => state.doctor);
-
   const overview = faBars as IconProp;
   const calendar = faCalendar as IconProp;
   const user = faUser as IconProp;
@@ -28,6 +28,7 @@ const SideBar = () => {
   const creditCard = faCreditCard as IconProp;
   const message = faEnvelope as IconProp;
   const blog = faFileLines as IconProp;
+  
   return (
     <div >
       {doctor.isAuthenticated ? (
