@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../src/redux/store';
 const DoctorCards = () => {
   const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo)
-  const appointments = doctor.Appointments
+  const appointments = doctor.appointments
   const calendar = faCalendar as IconProp;
   const user = faUser as IconProp;
   const building = faBuilding as IconProp;

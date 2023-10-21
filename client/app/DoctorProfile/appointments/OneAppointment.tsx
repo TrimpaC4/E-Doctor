@@ -15,6 +15,8 @@ type Appprops = {
 };
 
 const OneAppointment = ({ appo }: Appprops) => {
+console.log(appo)
+
   const dispatch: AppDispatch = useDispatch()
   useEffect(() => {
     const type = localStorage.getItem("type")
@@ -24,6 +26,8 @@ const OneAppointment = ({ appo }: Appprops) => {
       dispatch(getOneDoctor())
     }
   }, [])
+
+
   const [star, setStar] = useState<number>(1)
   const [review, setReview] = useState<string>("")
   const decline = faRectangleXmark as IconProp;
@@ -45,6 +49,12 @@ const OneAppointment = ({ appo }: Appprops) => {
     try {
       console.log("here")
       const response = await axios.put(`http://localhost:5000/api/appointment/${appoId}`, obj)
+      const type = localStorage.getItem("type")
+      if (type === "patient") {
+        dispatch(getOnePatient())
+      } else if (type === "doctor") {
+        dispatch(getOneDoctor())
+      } 
     } catch (error) {
       console.log(error);
     }
