@@ -27,7 +27,7 @@ export default function RootLayout({
       </head>
       <body>
         <ReduxProvider>
-          <NavBar />
+          {/* <NavBar /> */}
           {children}
         </ReduxProvider>
         <script
