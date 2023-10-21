@@ -56,6 +56,8 @@ model doctors {
   reports      reports[]
   reviews      reviews[]
   rooms        rooms[]
+  lat          number              @default(false)
+  long         number              @default(false)
 }
 
 model messages {
