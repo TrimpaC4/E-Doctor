@@ -11,15 +11,15 @@ const DoctorChat = () => {
   const [udpate, setUpdate] = useState<boolean>(true);
   return (
     <div>
-      {/* <section style={{ backgroundColor: '#CDC4F9' }}>
+      <section style={{ backgroundColor: '#CDC4F9' }}>
         <div className="container py-5">
           <div className="row">
             <ChatList udpate={udpate}  setUpdate={setUpdate}/>
             <ChatRoom udpate={udpate}  />
           </div>
         </div>
-      </section> */}
-      chat
+      </section>
+      
     </div>
   );
 };

@@ -15,18 +15,19 @@ const DoctorProfile = ({
   children: React.ReactNode;
 }): React.JSX.Element => {
   const dispatch: AppDispatch = useDispatch();
+  let person : object ;
   useEffect(() => {
     const type = localStorage.getItem("type");
     if (type === "patient") {
-      dispatch(getOnePatient());
+      person=dispatch(getOnePatient());
     } else if (type === "doctor") {
-      dispatch(getOneDoctor());
+      person=dispatch(getOneDoctor());
     }
+    console.log(person);
+    
   }, []);
 
-  return (
-    <Overview />
-  );
+  return <Overview />;
 };
 
 export default DoctorProfile;
