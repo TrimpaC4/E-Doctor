@@ -15,6 +15,7 @@ import {
 } from "../store/doctorSlice";
 import Navbar from "../navbar/page";
 import "./style.css";
+import Link from 'next/link'
 interface doctorType {
   id: number;
   name: string;
@@ -43,7 +44,11 @@ const DoctorsList = () => {
           gridTemplateColumns: "auto auto auto auto",
         }}
       >
-        {allDoctors.map((doctor: doctorType) => (
+        {allDoctors.map((doctor: any) => (
+          <Link href={{
+            pathname: '/doctorprofile/',
+            query: { id : doctor.id }, 
+          }}>
           <Card key={doctor.id} sx={{ maxWidth: 345, margin: "10px" }}>
             <CardMedia
               component="img"
@@ -87,6 +92,7 @@ const DoctorsList = () => {
               </Button>
             </CardActions>
           </Card>
+          </Link>
         ))}
       </div>
     </div>

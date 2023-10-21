@@ -5,7 +5,12 @@ interface doctorType {
   name: string;
   avatarUrl: string;
   department: string;
-  isVerified: boolean
+  isVerified: boolean,
+  email:string,
+  address:string,
+  phone:number,
+  cin: number,
+  age: number,
 }
 
 interface doctorType2 {
