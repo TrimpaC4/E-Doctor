@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const prisma = require("../prisma/prisma");
+const prisma = require("../prisma");
 
 
 const authProtection = async (req, res, next) => {
@@ -32,7 +32,7 @@ const authProtection = async (req, res, next) => {
           {where:{
             id: decoded.DoctorId,
           },include:{appointments:{
-            include: { patients:true
+                     include: { patients:true
           
           }}
             ,reports:true,reviews:true}}

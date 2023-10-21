@@ -171,13 +171,15 @@ body{
     background-color: rgba(255, 255, 255, 0.273);
     margin-right: 1.5rem;
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 3rem;
     width: 3rem;
 }
 .DoctorProfile-card-icon{
     width: 1.5rem;
     height: 1.5rem;
-    margin-top: 0.7rem;
 }
 .DoctorProfile-card-stat{
     font-size: 23px;
@@ -380,8 +382,11 @@ body{
     color: blueviolet;
 }
 .DoctorProfile-stock-icon-container{
-    background-color: rgba(151, 198, 249, 0.729);
+    background-color: rgba(135, 165, 235, 0.709);
     margin-right: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
     height: 3rem;
     width: 3rem;
@@ -389,6 +394,9 @@ body{
 .DoctorProfile-stock-icon-container2{
     background-color: rgba(255, 205, 149, 0.709);
     margin-right: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
     height: 3rem;
     width: 3rem;
@@ -396,7 +404,6 @@ body{
 .DoctorProfile-stock-icon{
     width: 1.5rem;
     height: 1.5rem;
-    margin-top: 0.7rem;
 }
 .DoctorProfile-statistics-stock-details-data{
     font-size: 18px;

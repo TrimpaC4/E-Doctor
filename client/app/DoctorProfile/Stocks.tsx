@@ -9,7 +9,7 @@ import { RootState } from '../../src/redux/store';
 
 const Stocks = () => {
   const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo)
-  const appointments = doctor.Appointments
+  const appointments = doctor.appointments
   const user = faUser as IconProp;
   const trendUp = faArrowTrendUp as IconProp;
   return (

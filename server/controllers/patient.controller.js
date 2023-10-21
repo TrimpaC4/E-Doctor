@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const prisma = require("../prisma/prisma");
+const prisma = require("../prisma");
 
 module.exports.register = async (req, res) => {
   try {
@@ -13,7 +13,7 @@ module.exports.register = async (req, res) => {
           },
         })
         .then((result) =>{
-     
+
           res.status(201).json({
             message: "User Created Successfully",
             result,
@@ -28,6 +28,7 @@ module.exports.register = async (req, res) => {
         });
     });
   } catch (error) {
+    throw error
     res.status(500).send({
       message: "Password was not hashed successfully",
       error,

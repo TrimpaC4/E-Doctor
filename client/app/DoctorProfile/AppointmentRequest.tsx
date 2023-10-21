@@ -16,6 +16,7 @@ type Appprops = {
 const AppointmentRequest = ({ appo }: Appprops) => {
   const dispatch: AppDispatch = useDispatch()
   console.log(appo)
+  console.log(appo.patient)
   // useEffect(() => {
   //   const type = localStorage.getItem("type")
   //   if (type === "patient") {
@@ -44,10 +45,10 @@ const AppointmentRequest = ({ appo }: Appprops) => {
       </div>
       <div className="DoctorProfile-appointment-requests-list-container-request-details">
         <span className="DoctorProfile-appointment-requests-list-container-request-details-name">
-          {appo.patients.name}
+          {appo.patients?.name}
         </span>
         <span className="DoctorProfile-appointment-requests-list-container-request-details-data">
-          {appo.patients.gender.toUpperCase() + ' , ' + appo.date}
+          {appo.patients?.gender.toUpperCase() + ' , ' + appo.date}
         </span>
       </div>
       {appo.status !== "pending" ? (
