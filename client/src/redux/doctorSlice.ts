@@ -12,6 +12,7 @@ interface DoctorState {
   type: string;
   allDoctors: Array<Object>;
   allReviwes: Array<Object>;
+  filterDepartement: Array<Object>;
 }
 
 const initialState: DoctorState = {
@@ -25,6 +26,7 @@ const initialState: DoctorState = {
   type: "doctor",
   allDoctors: [],
   allReviwes: [],
+  filterDepartement:[]
 };
 
 export const createDoctor = createAsyncThunk(
@@ -96,6 +98,24 @@ export const getReviewsByDocId = createAsyncThunk(
   }
 );
 
+
+export const filteredDepartement = createAsyncThunk(
+  "filtredDepartementData",
+  async (departement: string) => {
+    try {
+      const data = await axios.get(
+        `http://localhost:5000/api/doctor/departFiltred/${departement}`
+      );
+      return data.data;
+    } catch (error) {
+      return error;
+    }
+  }
+);
+
+
+
+
 const doctorSlice = createSlice({
   name: "DoctorSlice",
   initialState,
@@ -137,6 +157,9 @@ const doctorSlice = createSlice({
     });
     builder.addCase(getReviewsByDocId.fulfilled, (state, action) => {
       state.allReviwes = action.payload;
+    });
+    builder.addCase(filteredDepartement.fulfilled, (state, action) => {
+      state.filterDepartement = action.payload;
     });
   },
 });

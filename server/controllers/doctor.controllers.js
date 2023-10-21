@@ -188,3 +188,13 @@ module.exports.getByDepartment = async (req, res) => {
     res.json(error);
   }
 };
+
+
+module.exports.getAllFiltred = async (req, res) => {
+  try {
+    const result = await prisma.doctors.findMany({where:{department:req.params.depart}});
+    res.status(201).send(result);
+  } catch (error) {
+    res.json(error);
+  }
+};
