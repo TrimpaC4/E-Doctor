@@ -1,16 +1,27 @@
-import React from 'react'
+
+"use client"
+import React,{useEffect} from 'react'
+// import "./style.css"
+import OnePatient from '../../../src/components/OnePatient'
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/src/redux/store";
+import { getOnePatient } from '../../../src/redux/patientSlice';
+import { getOneDoctor } from '../../../src/redux/doctorSlice';
 import "./style.css"
-import OnePatient from './OnePatient'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../../src/redux/store'
-
-import { ReduxProvider } from "@/src/redux/provider";
-
-const AllPatients = () => {
-  // const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo)
-
+const Patient = () => {
+   const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo)||[]
+   const dispatch: AppDispatch = useDispatch()
+   useEffect(() => {
+    const type = localStorage.getItem("type")
+    if (type === "patient") {
+      dispatch(getOnePatient())
+    } else if (type === "doctor") {
+      dispatch(getOneDoctor())
+    }
+  }, [])  
+  console.log(doctor.appointments)
   return (
-    <ReduxProvider>
+    
     <div className='Patients-content'>
       <div className='Patients-container'>
         <div className='Patients-container-header'>
@@ -21,11 +32,10 @@ const AllPatients = () => {
           <span>Diseases</span>
           <span>Status</span>
         </div>
-        {/* { doctor.Appointments?.map((appo: any, i: number) => appo.isFinished ? < OnePatient key={i} appo={appo} /> : null)} */}
+        { doctor.appointments?.map((appo: any, i: number) =>  < OnePatient key={i} appo={appo} /> )}
       </div>
     </div>
-    </ReduxProvider>
+
   )
 }
-
-export default AllPatients
+export default  Patient

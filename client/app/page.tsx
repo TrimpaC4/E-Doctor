@@ -13,6 +13,7 @@ import { RootState,AppDispatch} from "./../src/redux/store"
 import { useRouter } from "next/navigation"
 import { ReduxProvider } from "@/src/redux/provider"
 import { getAllDoctors } from "@/src/redux/doctorSlice" 
+
 var obj = {
     Neurologist: {
         para: "A neurologist is a medical doctor who specializes in the diagnosis and treatment of disorders that affect the nervous system. The nervous system is a complex network that includes the brain, spinal cord, and peripheral nerves. Neurologists are experts in the management of various neurological conditions",

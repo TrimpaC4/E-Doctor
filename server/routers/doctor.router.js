@@ -9,6 +9,7 @@ const {
   getAvailableDoctors,
   updateTimes,
   getByDepartment,
+  verifyDoctor
 } = require("../controllers/doctor.controllers");
 const doctorRouter = express.Router();
 const authProtection = require("../midlwares/authmidalwre.js");
@@ -21,6 +22,8 @@ doctorRouter.delete("/:id", deleteOne);
 doctorRouter.put("/:id", updateOne);
 doctorRouter.post("/getAvailable", getAvailableDoctors);
 doctorRouter.put("/schedule/up", updateTimes);
+doctorRouter.put("/verify/:id", verifyDoctor);
 doctorRouter.post("/departmentFilter", getByDepartment);
+
 
 module.exports = doctorRouter;

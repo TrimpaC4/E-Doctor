@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const prisma = require("../prisma/prisma");
+const prisma = require("../prisma");
 
 module.exports.register = async (req, res) => {
   try {
@@ -130,6 +130,22 @@ module.exports.Update = async (req, res) => {
     });
     res.json(result);
   } catch (error) {
+    res.status(404).send(error);
+  }
+};
+module.exports.UpdateBlock = async (req, res) => {
+  try {
+    const id = +req.params.id;
+    const user = await prisma.patients.findUnique({where: {id: id}})
+    const result = await prisma.patients.update({
+      where: { id: id },
+      data:{
+        isBlocked:!user.isBlocked
+      },
+    });
+    res.json(result);
+  } catch (error) {
+    console.log(error);
     res.status(404).send(error);
   }
 };

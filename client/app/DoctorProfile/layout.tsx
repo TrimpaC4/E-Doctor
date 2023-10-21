@@ -15,11 +15,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ReduxProvider>
+   
     <html lang="en">
       <head>
       </head>
       <body >
+      <ReduxProvider>
       <div className="DoctorProfile-body">
         <SideBar />
         <div className="DoctorProfile-main">
@@ -29,8 +30,9 @@ export default function RootLayout({
           {children}
         </div>
       </div>
+      </ReduxProvider>
       </body >
     </html>
-    </ReduxProvider>
+    
   )
 }

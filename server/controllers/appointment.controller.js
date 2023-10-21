@@ -1,4 +1,4 @@
-const prisma = require("../prisma/prisma");
+const prisma = require("../prisma");
 
 
 module.exports = {
@@ -12,7 +12,7 @@ module.exports = {
   },
   update: async (req, res) => {
     try {
-      const respnse = await risma.appointments.update({
+      const respnse = await prisma.appointments.update({
         where: { id: req.params.id },data:req.body
       });
       res.status(201).send(respnse);
