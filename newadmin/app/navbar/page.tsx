@@ -2,13 +2,12 @@ import React from 'react'
 import Image from 'next/image'
 import img from './admin.png'
 import Homee from '../homee/page';
-import navStyle from 
+import './navbar.css'
 
 const Navbar: React.FC = () => {
   return (
-    <nav className={}>
-      
-    </nav>
+    <div>
+    </div>
   )
 }
 
