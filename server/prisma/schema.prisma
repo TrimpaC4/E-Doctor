@@ -56,8 +56,8 @@ model doctors {
   reports      reports[]
   reviews      reviews[]
   rooms        rooms[]
-  lat          Int              @default(0)
-  long         Int              @default(0)
+  lat          Decimal              @default(0)
+  long         Decimal              @default(0)
   isLocated    Boolean?         @default(false)
 }
 

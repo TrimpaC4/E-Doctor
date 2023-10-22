@@ -1,4 +1,6 @@
 .map-container {
+  /* overflow: hidden; */
+
   position: absolute;
   top: 0;
   bottom: 0;
@@ -47,6 +49,107 @@
     height: 50px;
     border-radius: 50%;
     cursor: pointer;
+  }
+  .mapboxgl-ctrl-geolocate {
+    background-image: url("https://www.svgrepo.com//show/1276/map-pin.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 40px;
+    width: 40px;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    bottom: 35vh;
+    left: 95vw;
+    border-radius: 4px;
+  
+  }
+  
+  .mapboxgl-ctrl-zoom-in {
+    background-image: url("https://static.thenounproject.com/png/2310577-200.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 30px;
+    width: 30px;
+    background-color: white;
+    border: none;
+    position: absolute;
+    bottom: 30vh;
+    left: 95vw;
+    border-radius: 4px;
+  }
+  
+  .mapboxgl-ctrl-zoom-out {
+    background-image: url("https://www.svgrepo.com/show/333165/math-minus.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 30px;
+    width: 30px;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    bottom: 23vh;
+    left: 95vw;
+    background-color: #ffffff;
+    border-radius: 4px;
+  }
+  
+  .mapboxgl-ctrl-fullscreen {
+    background-image: url("https://as1.ftcdn.net/v2/jpg/01/07/62/08/1000_F_107620840_ilGhK1fsQ5jCLETqhD95mhVPTI2Jui5T.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 30px;
+    width: 30px;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    bottom: 16vh;
+    left: 95vw;
+    background-color: #ffffff;
+    border-radius: 4px;
+  }
+
+  /* .location_info {
+    position: absolute;
+    height: 47vh;
+    width: 18vw;
+    background-color: #ffffff;
+    border-radius: 16px;
+    top: 10rem;
+    left: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+  } */
+  
+  #nameDoctor {
+    width: 80%;
+  }
+  
+  .map_avatar > img {
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    border: 4px solid rgb(119, 119, 119);
+  }
+
+  .mapboxgl-popup{
+    position: absolute;
+    height: 47vh;
+    width: 18vw;
+    background-color: #ffffff;
+    border-radius: 16px;
+    top: 10rem;
+    left: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
   }
 
 
