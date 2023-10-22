@@ -66,7 +66,7 @@ console.log(appo)
       <div className="d-flex align-items-center gap-4">
         <div className="image-frame2">
           <img
-            src={type === "patient" ? appo.doctor.avatarUrl : type === "doctor" ? appo.patients.avatarUrl : ""}
+            src={type === "patient" ? appo.doctors.avatarUrl : type === "doctor" ? appo.patients.avatarUrl : ""}
             alt=""
           />
         </div>
@@ -122,7 +122,7 @@ console.log(appo)
       </div>
       <div className="appointment-requests-list-container-request-details">
         <span className="appointment-requests-list-container-request-details-name">
-          {type === "patient" ? appo.doctor.name : type === "doctor" ? appo.patients.name : ""}
+          {type === "patient" ? appo.doctors.name : type === "doctor" ? appo.patients.name : ""}
         </span>
         <span className="appointment-requests-list-container-request-details-data">
           {type === "patient" ? appo.date : type === "doctor" ? appo.patients.gender.toUpperCase() + ' , ' + appo.date : ""}

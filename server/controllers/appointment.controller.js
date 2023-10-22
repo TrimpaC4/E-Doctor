@@ -17,7 +17,6 @@ module.exports = {
       });
       res.status(201).send(respnse);
     } catch (error) {
-      throw error
       res.json(error);
     }
   },

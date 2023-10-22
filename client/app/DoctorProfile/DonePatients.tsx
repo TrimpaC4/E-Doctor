@@ -8,6 +8,7 @@ const DonePatients = () => {
   const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo)
   const appointments = doctor.appointments || []
   const ellipsis = faEllipsisVertical as IconProp;
+  console.log(appointments)
   return (
     <div className="DoctorProfile-bottom">
       <div className="DoctorProfile-appointment-requests-list-header">
@@ -34,14 +35,14 @@ const DonePatients = () => {
           
           {
            
-            
+           
             appointments?.map((appo: any, i: number) => !appo.isFinished ?
               <tr key={i} >
                 <th scope="row" className="DoctorProfile-th">
                   <div className="DoctorProfile-patient-done">
                     <div className="DoctorProfile-image-frame3">
                       <img
-                        src={appo.patients.avatarUrl}
+                        src={appo.patients.avatarUrl === null ? " " :appo.patients.avatarUrl }
                         alt=""
                       />
                     </div>

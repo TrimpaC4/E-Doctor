@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import "./chat.css";
+import "../chat.css";
 import io from "socket.io-client";
 import axios from "axios";
 import { format, render, cancel, register } from "timeago.js";
@@ -9,7 +9,7 @@ const socket = io.connect("http://localhost:3002");
 function Chat({ messages, room, id }) {
   const [mes, setMes] = useState("");
   const [allMessages, setAllMessages] = useState(messages);
-
+console.log(room);
   const sendMessage = async (message) => {
     if (message !== "") {
       await axios
@@ -18,7 +18,7 @@ function Chat({ messages, room, id }) {
           DoctorId: room.DoctorId,
           PatientId: room.PatientId,
           content: message,
-          senderPhone: id + "",
+          owner: id + "",
         })
         .then(async (response) => {
           await socket.emit("send-message", response.data);
@@ -51,7 +51,7 @@ function Chat({ messages, room, id }) {
             <div className="position-holder">
               <div
                 key={i}
-                className={message.senderPhone === id + "" ? "me" : "you"}
+                className={message.owner === id + "" ? "me" : "you"}
               >
                 <div>{message.content}</div>
                 <p>{format(message.createdAt)}</p>

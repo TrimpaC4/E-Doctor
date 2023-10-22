@@ -12,6 +12,7 @@ import { RootState, AppDispatch } from "./../src/redux/store";
 import { useRouter } from "next/navigation";
 import { ReduxProvider } from "@/src/redux/provider";
 import { getAllDoctors } from "@/src/redux/doctorSlice";
+import dynamic from "next/dynamic";
 
 var obj = {
   Neurologist: {
@@ -61,6 +62,7 @@ const LandingPage = () => {
   }, []);
   return (
     <ReduxProvider>
+ 
       <div className="landing-page-container">
         <div className="landing-page-container-child-1">
           <div className="sub1-child-1">
@@ -153,15 +155,16 @@ const LandingPage = () => {
                 />
               </div>
               <div>
-                <Link href="/map">
-                  <button>Map</button>
-                </Link>
-              </div>
               <Link
                 href={{ pathname: "/services", query: { department, name } }}
               >
-                <div className="sera-input">Search</div>
+               <button id="mybangobtn">Search</button>
               </Link>
+              </div>
+             
+              <Link href="/map" >
+                <button id="mybangobtn">Explore by Map</button>
+                </Link>
             </div>
           </div>
         </div>
@@ -324,5 +327,5 @@ const LandingPage = () => {
     </ReduxProvider>
   );
 };
+export default dynamic (() => Promise.resolve(LandingPage), {ssr: false})
 
-export default LandingPage;

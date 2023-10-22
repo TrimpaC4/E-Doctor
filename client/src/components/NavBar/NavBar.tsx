@@ -8,6 +8,7 @@ import { AppDispatch, RootState } from "../../redux/store"
 import { logoutPatient } from "../../redux/patientSlice"
 import { logoutDoctor } from "../../redux/doctorSlice"
 import { useRouter } from 'next/navigation';
+import dynamic from "next/dynamic";
 
 import Image from "next/image"
 const NavBar = (): React.JSX.Element => {
@@ -61,5 +62,4 @@ const NavBar = (): React.JSX.Element => {
         </div>
     )
 }
-
-export default NavBar
+export default dynamic (() => Promise.resolve(NavBar), {ssr: false})

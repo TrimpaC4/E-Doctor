@@ -6,17 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../src/redux/store";
 import { getOnePatient } from "../../../src/redux/patientSlice";
 import { getOneDoctor } from "../../../src/redux/doctorSlice";
-
+import dynamic from "next/dynamic";
 const Review = () => {
+    const rated:any = {ONE:1, TWO:2, THREE:3, FOUR:4, FIVE:5}
     const dispatch: AppDispatch = useDispatch()
-    // useEffect(() => {
-    //     const type = localStorage.getItem("type")
-    //     if (type === "patient") {
-    //         dispatch(getOnePatient())
-    //     } else if (type === "doctor") {
-    //         dispatch(getOneDoctor())
-    //     }
-    // },[])
     const [job, setJob] = useState("")
     const [profilePhoto] = useState("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKaiKiPcLJj7ufrj6M2KaPwyCT4lDSFA5oog&usqp=CAU")
     const [name, setName] = useState("")
@@ -26,13 +19,20 @@ const Review = () => {
 
     const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo)
     const allReviwes: any = useSelector((state: RootState) => state.doctor.allReviwes);
-    // useEffect(() => {
-    //     const resTrust = +(allReviwes.reduce((acc: number, elm: any) => acc + +elm.rate, 0) / allReviwes.length * 5).toFixed(0)
-    //     setTrust(resTrust)
-    //     const resStar = +(allReviwes.reduce((acc: number, elm: any) => acc + +elm.rate, 0) / allReviwes.length).toFixed(0)
-    //     setStar(resStar)
-    // }, [])
+console.log(doctor.review)
 
+    useEffect(() => {
+        const type = localStorage.getItem("type")
+        if (type === "patient") {
+            dispatch(getOnePatient())
+        } else if (type === "doctor") {
+            dispatch(getOneDoctor())
+        }
+        const resTrust = +(allReviwes.reduce((acc: number, elm: any) => acc + +rated[elm.rate], 0) / allReviwes.length * 5).toFixed(0)
+        setTrust(resTrust)
+        const resStar = +(allReviwes.reduce((acc: number, elm: any) => acc + +rated[elm.rate], 0) / allReviwes.length).toFixed(0)
+        setStar(resStar)
+    }, [])
 
     return (
         <div style={{ marginTop: "2rem" }}>
@@ -84,4 +84,4 @@ const Review = () => {
 
     )
 }
-export default Review;
+export default dynamic (() => Promise.resolve(Review), {ssr: false})

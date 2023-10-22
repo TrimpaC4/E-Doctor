@@ -16,6 +16,7 @@
 
 .sub1-child-1 {
   height: 80%;
+  padding: 70px;
   /* background: yellow; */
   display: flex;
 }
@@ -183,4 +184,30 @@
   font-weight: 700;
   line-height: 2.125rem;
   /* 141.667% */
+}
+
+.mb-5{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+#mybangobtn{
+  padding: 10px 15px;
+  background-color: #007e85;
+  color: white;
+  font-size: 23px;
+  border: none;
+border-radius: 12px;
+transition-duration: 0.7s;
+}
+
+#mybangobtn:hover{
+
+  background-color:   white;
+  color: #007e85;
+  transform: scale(1.1);
+  border: solid 1px #007e85;
 }

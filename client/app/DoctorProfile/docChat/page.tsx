@@ -14,6 +14,6 @@ const DoctorChat = () => {
       <ChatList />
     </div>
   );
-}
-  
+};
+
 export default DoctorChat;

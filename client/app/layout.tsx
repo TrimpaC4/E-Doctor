@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   {
   }
-  return (
+  return ( <ReduxProvider>
     <html lang="en">
       <head>
         <link
@@ -27,11 +27,12 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <ReduxProvider>
-          <NavBar />
+       
+        <NavBar />
+
           {children}
           <ToastContainer/>
-        </ReduxProvider>
+       
         
         <script
           src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -40,5 +41,6 @@ export default function RootLayout({
         ></script>
       </body>
     </html>
+    </ReduxProvider>
   );
 }
