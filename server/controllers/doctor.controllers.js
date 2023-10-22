@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { Op, where } = require("sequelize");
-const prisma = require("../prisma/prisma");
+const prisma = require("../prisma");
 
 module.exports.register = async (req, res) => {
   try {
@@ -91,6 +91,8 @@ module.exports.getAll = async (req, res) => {
 module.exports.getOne = async (req, res) => {
   res.status(200).send(req.user);
 };
+
+
 module.exports.deleteOne = async (req, res) => {
   try {
     const result = await prisma.doctors.delete({

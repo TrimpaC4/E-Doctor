@@ -5,7 +5,7 @@ import { RootState } from '../../src/redux/store';
 import { useRouter } from 'next/navigation';
 const AppointmentsList = () => {
   const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo)
-
+console.log(doctor)
   const navigate = useRouter()
   return (
     <div className="DoctorProfile-appointment-requests-list">
@@ -19,7 +19,7 @@ const AppointmentsList = () => {
       </div>
       <div className="DoctorProfile-appointment-requests-list-container">
         {
-          doctor.Appointments?.map((appo: any, index: number) => index < 4 ? <AppointmentRequest appo={appo} key={index}  /> : null)
+          doctor.appointments?.map((appo: any, index: number) => index < 4 ? <AppointmentRequest appo={appo} key={index}  /> : null)
         }
 
         {/* <AppointmentRequest isConfirmed={false} isPending={true} />

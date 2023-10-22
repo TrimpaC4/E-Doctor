@@ -7,7 +7,7 @@ import "./home.css";
 const home = () => {
   return (
     <div>
-      <button
+      {/* <button
         className="btn btn-primary"
         type="button"
         data-bs-toggle="offcanvas"
@@ -52,7 +52,7 @@ const home = () => {
             </ul>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

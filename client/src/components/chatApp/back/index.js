@@ -12,8 +12,6 @@ const io = new Server(server, {
     }
 })
 
-
-
 // http.listen(PORT, () => console.log(`listening on ${PORT}`))
 
 let a=app.listen(3002, () => console.log(`listening on port 3002 `));

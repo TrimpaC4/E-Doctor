@@ -4,16 +4,17 @@ import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../src/redux/store';
-import avatrHolder from '../../assets/images/palceUser.jpg'
+import { RootState } from '../redux/store';
+
 interface patientInfo {
   avatarUrl: string;
 }
+
+
 const TopNav = () => {
   const question = faCircleQuestion as IconProp;
   const bell = faBell as IconProp;
-  // const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo)
-  // const patient: any = useSelector((state: RootState) => state.patient.patientInfo)
+  
 
   return (
     <div className="DoctorProfile-top">
