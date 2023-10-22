@@ -50,7 +50,7 @@ const barChart: React.FC<PieChartProps> = () => {
     };
 
     const options: ChartOptions = {
-      responsive: false,
+      responsive: true,
       scales: {
         y: {
           beginAtZero: true,

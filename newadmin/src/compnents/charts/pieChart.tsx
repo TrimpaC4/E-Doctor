@@ -47,7 +47,7 @@ const pieChart: React.FC<PieChartProps> = () => {
     };
 
     const options: ChartOptions = {
-      responsive: false,
+      responsive: true,
     };
 
     return {

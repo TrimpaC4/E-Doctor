@@ -9,6 +9,9 @@
   transition: 0.3s cubic-bezier(0.77, 0, 0.175, 1);
   box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15);
   z-index: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .nav_main_container:hover {
@@ -22,4 +25,16 @@
 
 .nav_main_container:hover > div ul {
   opacity: 1;
+}
+
+.navLists {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 2.5rem;
+}
+
+.navLists li {
+  list-style: none;
 }

@@ -8,21 +8,21 @@ const Navbar: React.FC = () => {
   return (
     <nav className={navStyle.nav_main_container}>
       <div>
-        <ul className="bb">
+        <ul className={navStyle.navLists}>
           <div>
-            <li>dashboard</li>
+            <li>statistics</li>
           </div>
           <div>
-            <li>dashboard</li>
+            <li>Patients</li>
           </div>
           <div>
-            <li>dashboard</li>
+            <li>Doctors</li>
           </div>
           <div>
-            <li>dashboard</li>
+            <li>Setting</li>
           </div>
           <div>
-            <li>dashboard</li>
+            <li>Logout</li>
           </div>
         </ul>
       </div>
