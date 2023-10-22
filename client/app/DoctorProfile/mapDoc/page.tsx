@@ -4,7 +4,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 // import geoJson from './chicago-parks.json';
 import "../../map/page";
-
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../src/redux/store";
+import { updateLatLong,updateisLocated } from "../../../src/redux/doctorSlice";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiYXltZW4xMDEwIiwiYSI6ImNsbncwbDdlNzAyaHQycmxlOWRyaWFkemwifQ.EH5vbilYH63oHQEaf62AIA";
@@ -35,8 +37,10 @@ const Map = () => {
   const [Long, setLong] = useState<number>(0);
   const [mouseLat, setMouselat] = useState<any>(0);
   const [mouseLong, setMouselong] = useState<any>(0);
+  const [emailVal, setEmailval] = useState<any>("");
   console.log("tttttttttttttt",mouseLat,mouseLong);
-  
+  const dispatch: AppDispatch = useDispatch();
+
   
 
   console.log(Lat);
@@ -172,12 +176,12 @@ const geojsonData={features:[]}
     <div>
       <ul>
         <span>
-          <input type="text" placeholder="write your e-mail"></input>
+          <input onChange={(e)=>{setEmailval(e.target.value)}} type="text" placeholder="write your e-mail"></input>
         </span>
-        <button>
+        <button onClick={()=>dispatch(updateLatLong({email:emailVal,lat:mouseLat,long:mouseLong}))}>
           Submit
         </button>
-        <button>Update</button>
+        <button onClick={()=>dispatch(updateisLocated({email:emailVal}))} >Update</button>
       </ul>
 
     <div className="big-div-parent">

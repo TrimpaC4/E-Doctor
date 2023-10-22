@@ -10,7 +10,9 @@ const {
   updateTimes,
   getByDepartment,
   verifyDoctor,
-  getAllFiltred
+  getAllFiltred,
+  updateLatLong,
+  updateisLocated
 } = require("../controllers/doctor.controllers");
 const doctorRouter = express.Router();
 const authProtection = require("../midlwares/authmidalwre.js");
@@ -25,7 +27,9 @@ doctorRouter.post("/getAvailable", getAvailableDoctors);
 doctorRouter.put("/schedule/up", updateTimes);
 doctorRouter.put("/verify/:id", verifyDoctor);
 doctorRouter.post("/departmentFilter", getByDepartment);
-doctorRouter.get("/departFiltred/:depart")
+doctorRouter.get("/departFiltred/:depart",getAllFiltred)
+doctorRouter.put("/updateGeo",updateLatLong)
+doctorRouter.put("/updateLocation",updateisLocated)
 
 
 module.exports = doctorRouter;

@@ -112,6 +112,32 @@ export const filteredDepartement = createAsyncThunk(
     }
   }
 );
+export const updateLatLong = createAsyncThunk(
+  "filtredDepartementData",
+  async (body: any) => {
+    try {
+      const data = await axios.put(
+        `http://localhost:5000/api/doctor/updateGeo`,body
+      );
+      return data.data;
+    } catch (error) {
+      return error;
+    }
+  }
+);
+export const updateisLocated = createAsyncThunk(
+  "filtredDepartementData",
+  async (body: any) => {
+    try {
+      const data = await axios.put(
+        `http://localhost:5000/api/doctor/updateLocation`,body
+      );
+      return data.data;
+    } catch (error) {
+      return error;
+    }
+  }
+);
 
 
 

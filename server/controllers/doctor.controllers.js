@@ -198,3 +198,25 @@ module.exports.getAllFiltred = async (req, res) => {
     res.json(error);
   }
 };
+
+module.exports.updateLatLong = async (req, res) =>{
+  try {
+    const doctor = await prisma.doctors.findUnique({where: {email:req.body.email}})
+    if(doctor.isLocated){
+      const LatLgt = await prisma.doctors.update({where:{email:req.body.email},data:req.body})
+    }
+  } catch (error) {
+    console.log(error);
+    res.json(error);
+  }
+}
+module.exports.updateisLocated = async (req, res) =>{
+  try {
+    const doctor = await prisma.doctors.findUnique({where: {email:req.body.email}})
+      const LatLgt = await prisma.doctors.update({where:{email:req.body.email},data:{isLocated:!doctor.isLocated}})
+    
+  } catch (error) {
+    console.log(error);
+    res.json(error);
+  }
+}
