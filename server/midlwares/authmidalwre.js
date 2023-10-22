@@ -22,7 +22,6 @@ const authProtection = async (req, res, next) => {
         req.user = await prisma.patients.findUnique( {where:{
           id: decoded.PatientId,
         },include:{appointments:{
-          
         },reports:true,reviews:true}}
 
         );

@@ -1,6 +1,7 @@
+"use client"
 import React, { useEffect, useState } from "react";
-import './review.css'
 import YasBar from "../YasBar";
+import "./style.css"
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../src/redux/store";
 import { getOnePatient } from "../../../src/redux/patientSlice";

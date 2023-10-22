@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import './review.css'
+import '../doctorProfile/review/style.css'
 import OneReviewComponent from "./OneReviewComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../src/redux/store";
