@@ -1,90 +1,143 @@
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/src/redux/store";
+import axios from "axios";
+import Chat from "../../../src/components/chatApp/front/page";
 
-import React, { useEffect, useState } from 'react';
-import "./style.css"
-import axios from 'axios';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../src/redux/store';
-interface props {
-  setUpdate: any;
-  udpate: boolean;
-}
-const ChatRooms = ({ setUpdate, udpate }: props) => {
-  const [chatRooms, setChatRooms] = useState<any[]>([])
-  const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo);
-  const patient: any = useSelector((state: RootState) => state.patient.patientInfo);
-  const type = localStorage.getItem('type')
+function ChatRooms() {
+  const [user, setUser] = useState<any>({});
+  const [doctors, setDoctors] = useState<any>([]);
+  const [patients, setPatients] = useState<any>([]);
+  const [rooms, setRooms] = useState<any>([]);
+  const [currentRoom, setCurrentRoom] = useState<any>({});
+  const [openConvo, setOpenConvo] = useState(false);
+  const [reFetch,setReFtech] = useState(false);
 
-
-  const getAllchatRooms = async () => {
-    try {
-      const type = localStorage.getItem('type')
-      if (type === 'doctor') {
-        const res = await axios.get(`http://localhost:5000/api/room/getAllDoc/${doctor.id}`)
-        setChatRooms(res.data)
-      } else if (type === "patient") {
-        const res = await axios.get(`http://localhost:5000/api/room/getAllPat/${patient.id}`)
-        setChatRooms(res.data)
-      }
-    } catch (error) {
-      console.log(error);
+  const fetch = async () => {
+    const token = localStorage.getItem("token");
+    if (localStorage.getItem("type") === "patient") {
+      await axios
+        .get("http://localhost:5000/api/patient/getOne", {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        })
+        .then(async (response) => {
+          setUser(response.data);
+          await axios
+            .get(`http://localhost:5000/api/room/GetAllPat/${user.id}`)
+            .then(async (res) => {
+              setRooms(res.data);
+              await axios
+                .get("http://localhost:5000/api/doctor/getAll")
+                .then((resp) => {
+                  setDoctors(resp.data);
+                });
+            });
+        });
+    } else if (localStorage.getItem("type") === "doctor") {
+      await axios
+        .get("http://localhost:5000/api/doctor/getOne", {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        })
+        .then(async (response) => {
+          setUser(response.data);
+          await axios
+            .get(`http://localhost:5000/api/room/GetAllDoc/${user.id}`)
+            .then(async (res) => {
+              setRooms(res.data);
+              await axios
+                .get("http://localhost:5000/api/patient/getAll")
+                .then(async (resp) => {
+                  setPatients(resp.data);
+                });
+            });
+        });
     }
-  }
+  };
+
+  const createRoom = async (sender: any, receiver: any) => {
+    if (localStorage.getItem("type") === "patient") {
+      await axios
+        .post("http://localhost:5000/api/room/makeRoom", {
+          PatientId: parseInt(sender),
+          DoctorId: parseInt(receiver),
+        })
+        .then(() => {
+          fetch();
+        });
+    } else {
+      await axios
+        .post("http://localhost:5000/api/room/makeRoom", {
+          PatientId: parseInt(receiver),
+          DoctorId: parseInt(sender),
+        })
+        .then(() => {
+          fetch();
+        });
+    }
+  };
+
   useEffect(() => {
-    getAllchatRooms()
-  }, [])
-
+    fetch();
+    if(Object.keys(user).length === 0) {
+      setReFtech(!reFetch)
+    }
+  }, [reFetch]);
   return (
-    <div className="hre col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0 bordered">
-      <div className="p-3">
-        <div className="input-group rounded mb-3">
-          <input
-            type="search"
-            className="form-control rounded"
-            placeholder="Search"
-            aria-label="Search"
-            aria-describedby="search-addon"
-          />
-          <span className="input-group-text border-0" id="search-addon">
-            <i className="fas fa-search"></i>
-          </span>
+    <div className="chatList">
+      {!openConvo ? (
+        <div>
+          <div className="drop-menu">
+            <select
+              onChange={(e) => {
+                createRoom(user.id, e.target.value);
+              }}
+            >
+              {localStorage.getItem("type") === "doctor"
+                ? patients.map((patient: any) => {
+                    return (
+                      <option key={patient.id} value={patient.id}>
+                        {patient.name}
+                      </option>
+                    );
+                  })
+                : doctors.map((doctor: any) => {
+                    return (
+                      <option key={doctor.id} value={doctor.id}>
+                        {doctor.name}
+                      </option>
+                    );
+                  })}
+            </select>
+          </div>
+          {rooms.map((room: any) => {
+            return (
+              <div
+                className="room-container"
+                key={room.id}
+                onClick={() => {
+                  setCurrentRoom(room);
+                  setOpenConvo(true);
+                }}
+              >
+                Conversation between you and{" "}
+                {localStorage.getItem("type") === "doctor"
+                  ? room.patients.name
+                  : room.doctors.name}
+              </div>
+            );
+          })}
         </div>
-        <div data-mdb-perfect-scrollbar="true" className='container_rooms' style={{ position: 'relative', height: '400px' }}>
-          <ul className="list-unstyled mb-0">
+      ) : null}
 
-            {
-              chatRooms?.map((room) =>
-                <li
-                  onClick={() => { localStorage.setItem('roomId', room.id); setUpdate(!udpate) }}
-                  key={room.id}
-                  className="p-2 border-bottom">
-                  <a className="d-flex justify-content-between">
-                    <div className="d-flex flex-row">
-                      <div>
-                        <img
-                          src={type === "doctor" ? room.Patient.avatarUrl : room.Doctor.avatarUrl}
-                          alt="avatar"
-                          className="d-flex align-self-center me-3"
-                          width="60"
-                        />
-                        <span className="badge bg-success badge-dot"></span>
-                      </div>
-                      <div className="pt-1">
-                        <p className="fw-bold mb-0">{type === "doctor" ? room.Patient.name : room.Doctor.name}</p>
-                        <p className="small text-muted">{room.Messages[room.Messages.length - 1]?.content}</p>
-                      </div>
-                    </div>
-                    <div className="pt-1">
-                    </div>
-                  </a>
-                </li>)
-            }
-
-
-          </ul>
-        </div>
-      </div>
+      {openConvo ? (
+        <Chat messages={currentRoom.messages} room={currentRoom} id={user.id} />
+      ) : null}
     </div>
   );
-};
+}
 
 export default ChatRooms;

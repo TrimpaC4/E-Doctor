@@ -56,7 +56,7 @@ const LandingPage = () => {
     const dispatsh:AppDispatch = useDispatch()
     const [token, setToken] = useState<any>(localStorage.getItem('token'))
     const { allDoctors } = useSelector((state: RootState) => state.doctor);
- 
+
     useEffect(()=>{
         dispatsh(getAllDoctors())
     },[])

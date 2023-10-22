@@ -17,13 +17,19 @@ const io = new Server(server, {
 let a=app.listen(3002, () => console.log(`listening on port 3002 `));
 io.listen(a)
 
+
+
 io.on('connection', (socket) => {
     console.log(`User connected: ${socket.id}`);
-    socket.join("room")
+    let room ;
+    socket.on("join-room", (id) =>{
+        room = id
+        socket.join(id)
+    })
     socket.on("disconnect", () =>{
         console.log("User disconnected");
     })
     socket.on("send-message", (data)=>{
-        socket.to("room").emit("receive-message",data)
+        socket.to(room).emit("receive-message",data)
     })
 });

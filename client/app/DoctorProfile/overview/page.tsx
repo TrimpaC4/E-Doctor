@@ -28,7 +28,7 @@ const Overview = () => {
     <div style={{ backgroundColor: "#F7F6F6" }}>
       <div className="DoctorProfile-mid">
         <span className="DoctorProfile-welcome">Welcome, {doctor.name}</span>
-        <span>Have a nice day at great work</span>
+        <span>Have a nice day at work</span>
       </div>
       <DoctorCards />
       <div className="DoctorProfile-middle">
