@@ -1,33 +1,69 @@
 .chat{
     width: 100%;
-    height: 100vh;
+    height: 72.5vh;
 }
 .inputs{
-    position: absolute ;
-    bottom: 0;
+    width: 100%;
+    height: 3rem;
+    margin-right: 1rem;
 }
+.inputs input{
+    width: 85%;
+    border-radius: 5px;
+    height: 100%;
+}
+.inputs button{
+    width: 15%;
+    border-radius: 5px;
+    height: 100%;
+}
+
 .feed{
     height: 100%;
+    display: flex ;
+    flex-direction: column;
+    overflow: scroll;
+    scroll-behavior: smooth;
+    overflow-y: auto;
+    overflow-x: auto;
+    margin-right: 1rem;
+}
+.feed::-webkit-scrollbar{
+    display: none;
+}
+
+.me{
+    background-color: rgba(74, 78, 207, 0.659);
+    width: fit-content;
+    max-width: 40%;
+    border-radius: 15px;
+    padding: 0.4rem;
+    word-break: break-all;
     display: flex !important;
     flex-direction: column;
-}
-.me{
-    background-color: green;
-    width: fit-content;
-    max-width: 40%;
-    border-radius: 15px;
-    padding: 0.4rem;
-    word-break: break-all;
-    display: flex !important;
-    justify-content: flex-start !important;
+    margin-right: 0 !important;
+    float: right;
 }
 .you{
-    background-color: red;
+    background-color: rgba(172, 155, 155, 0.608);
     width: fit-content;
     max-width: 40%;
     padding: 0.4rem;
     border-radius: 15px;
     word-break: break-all;
     display: flex !important;
-    justify-content: flex-end !important;
+    flex-direction: column;
+    font-weight: 500;
+    margin-right: 0 !important; 
+}
+.me p{
+    opacity: 0.5;
+    font-size: 10px;
+    margin: 0;
+}
+
+.you p{
+    opacity: 0.5;
+    font-size: 10px;
+    margin: 0;
 }

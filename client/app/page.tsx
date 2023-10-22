@@ -151,11 +151,11 @@ const LandingPage = () => {
                     setDepartment(e.target.value);
                   }}
                 />
-                <div>
-                  <Link href="/map">
-                    <button>Map</button>
-                  </Link>
-                </div>
+              </div>
+              <div>
+                <Link href="/map">
+                  <button>Map</button>
+                </Link>
               </div>
               <Link
                 href={{ pathname: "/services", query: { department, name } }}

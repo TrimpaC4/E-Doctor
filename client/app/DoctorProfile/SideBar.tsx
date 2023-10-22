@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 import Image from "next/image";
 import { RootState } from "../../src/redux/store";
 import { useRouter } from "next/navigation";
-
+import Link from "next/link";
 const SideBar = () => {
 
   const navigate = useRouter();
@@ -33,13 +33,15 @@ const SideBar = () => {
     <div >
       {doctor.isAuthenticated ? (
         <div className="DoctorProfile-sideBar">
+          <Link href={"/"}>
           <div
             className="DoctorProfile-logo"
-            onClick={() => navigate.push("/")}
           >
-            <Image className="DoctorProfile-logo1" src={logo1} alt="" />
+              <Image className="DoctorProfile-logo1" src={logo1} alt="" />
             <Image className="DoctorProfile-logo2" src={logo2} alt="" />
           </div>
+          </Link>
+          
 
           <ul className="DoctorProfile-menu">
             <li onClick={() => navigate.push("/doctorProfile")}>
