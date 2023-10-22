@@ -222,7 +222,7 @@ const Map = () => {
         type: "Feature",
         geometry: {
           type: "Point", // You can change this to other geometries like LineString or Polygon as needed
-          coordinates: [coords.lat, coords.long],
+          coordinates: [coords.long, coords.lat],
         },
         properties: {
           // Add any additional properties you want here
@@ -325,7 +325,7 @@ const Map = () => {
       let phone = 0
       let avatarUrl = ""
      allDoctors.forEach((e:any)=>{
-      coordinates=[e.lat,e.long]
+      coordinates=[e.long,e.lat]
       address=e.address
       avatarUrl=e.avatarUrl
       name=e.name
