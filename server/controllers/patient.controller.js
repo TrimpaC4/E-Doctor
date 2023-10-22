@@ -12,15 +12,14 @@ module.exports.register = async (req, res) => {
             password: hassedPass,
           },
         })
-        .then((result) =>{
-
+        .then((result) => {
           res.status(201).json({
             message: "User Created Successfully",
             result,
-          })}
-        )
+          });
+        })
         .catch((error) => {
-          console.log(error)
+          console.log(error);
           res.status(500).send({
             message: "Error creating User",
             error,
@@ -28,7 +27,7 @@ module.exports.register = async (req, res) => {
         });
     });
   } catch (error) {
-    throw error
+    throw error;
     res.status(500).send({
       message: "Password was not hashed successfully",
       error,
@@ -84,19 +83,18 @@ module.exports.login = async (req, res) => {
 
 module.exports.getAll = async (req, res) => {
   try {
-    const result = await prisma.patients.findMany(
-  {
-    //   include: {
-    //     reports: true,
-    //     appointments: {
-    //         include: {
-    //             doctors: true,
-    //             rooms: true,
-    //         },
-    //     },
-    //     messages: true,
-    //     rooms: true,
-    // },
+    const result = await prisma.patients.findMany({
+      //   include: {
+      //     reports: true,
+      //     appointments: {
+      //         include: {
+      //             doctors: true,
+      //             rooms: true,
+      //         },
+      //     },
+      //     messages: true,
+      //     rooms: true,
+      // },
     });
     res.json(result);
   } catch (error) {
@@ -108,7 +106,6 @@ module.exports.getAll = async (req, res) => {
 module.exports.getOne = async (req, res) => {
   res.status(200).send(req.user);
 };
-
 module.exports.remove = async (req, res) => {
   try {
     const patientId = req.params.id;
@@ -116,7 +113,7 @@ module.exports.remove = async (req, res) => {
     const result = await prisma.patients.delete({
       where: { id: +patientId },
     });
-res.json(result)
+    res.json(result);
   } catch (error) {
     res.status(500).json({ error: " server error" });
   }
@@ -137,11 +134,11 @@ module.exports.Update = async (req, res) => {
 module.exports.UpdateBlock = async (req, res) => {
   try {
     const id = +req.params.id;
-    const user = await prisma.patients.findUnique({where: {id: id}})
+    const user = await prisma.patients.findUnique({ where: { id: id } });
     const result = await prisma.patients.update({
       where: { id: id },
-      data:{
-        isBlocked:!user.isBlocked
+      data: {
+        isBlocked: !user.isBlocked,
       },
     });
     res.json(result);

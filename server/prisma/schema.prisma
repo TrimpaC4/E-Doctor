@@ -61,7 +61,7 @@ model doctors {
 model messages {
   id          Int       @id @default(autoincrement())
   content     String    @db.VarChar(255)
-  senderPhone String?   @db.VarChar(255)
+  owner       String   @db.VarChar(255)
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @default(now())
   PatientId   Int?

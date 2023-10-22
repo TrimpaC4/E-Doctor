@@ -52,6 +52,8 @@ export const getOnePatient = createAsyncThunk("getOnePatient", async () => {
         authorization: `Bearer ${token}`,
       },
     });
+    // console.log(data);
+    
     return data.data;
   } catch (error) {
     return error;
