@@ -2,19 +2,34 @@
     height: 5rem;
     display: flex;
     align-items: center;
-    background-color: rgb(112, 112, 225);
+    justify-content: center;
+    margin-top: 5px;
     font-size: 20px;
     font-weight: 500;
-    border-bottom: solid 1px white;
     cursor: pointer;
     transition: 0.3s;
+    width:100%;
+    border: 1px solid green;
 }
 .room-container:hover{
     background-color: white;
     color:  rgb(112, 112, 225);
 
 }
+.room-container img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 20px;
+
+}
 select{
-    width: 100%;
+    width:100%;
     text-align: center;
+    padding: 15px;
+}
+
+.chatList{
+    display: flex;
+    width: 100%;
 }

@@ -9,6 +9,8 @@ import { getOnePatient } from "../../src/redux/patientSlice";
 import { getOneDoctor } from "../../src/redux/doctorSlice";
 import { ReduxProvider } from "@/src/redux/provider";
 import Overview from "./overview/page";
+import dynamic from "next/dynamic";
+
 const DoctorProfile = ({
   children,
 }: {
@@ -30,5 +32,5 @@ const DoctorProfile = ({
 
   return <Overview />;
 };
+export default dynamic (() => Promise.resolve(DoctorProfile), {ssr: false})
 
-export default DoctorProfile;

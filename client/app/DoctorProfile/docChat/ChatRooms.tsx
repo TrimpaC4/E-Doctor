@@ -86,6 +86,9 @@ function ChatRooms() {
       setReFtech(!reFetch)
     }
   }, [reFetch]);
+
+  console.log(currentRoom);
+  
   return (
     <div className="chatList">
       {!openConvo ? (

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../src/redux/store";
 import { getOnePatient } from '../../../src/redux/patientSlice';
 import { getOneDoctor } from '../../../src/redux/doctorSlice';
+import dynamic from "next/dynamic";
 
 const AllAppointments = () => {
   const doctor: any = useSelector((state: RootState) => state.doctor.doctorInfo)
@@ -20,7 +21,7 @@ const AllAppointments = () => {
     }
   }, [])  
   
-  console.log(doctor.appointments);
+  console.log(patient.appointments);
   
   const type = localStorage.getItem('type');
   return (
@@ -32,5 +33,4 @@ const AllAppointments = () => {
     </div>
   )
 }
-
-export default AllAppointments
+export default dynamic (() => Promise.resolve(AllAppointments), {ssr: false})
