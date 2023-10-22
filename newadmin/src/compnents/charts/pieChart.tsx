@@ -37,10 +37,10 @@ const pieChart: React.FC<PieChartProps> = () => {
 
   const getPieChartConfig = (): ChartConfiguration => {
     const data: ChartData = {
-      labels: ["Label 1", "Label 2", "Label 3"],
+      labels: ["Male", "Female",],
       datasets: [
         {
-          data: [50, 20],
+          data: [20, 50],
           backgroundColor: ["red", "blue", "green"],
         },
       ],

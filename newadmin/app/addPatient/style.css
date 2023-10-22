@@ -31,14 +31,14 @@
     background-color: rgb(255, 255, 255);
     width: 30vw;
     height: 86vh;
-    gap: 1.75rem;
+    gap: 1rem;
     border-radius: 16px;
     position: absolute;
 }
 
 .inputt > input {
     /* background-color: black; */
-    height: 5vh;
+    height: 1vh;
     width: 25vw;
     border-radius: 8px;
     border: 3px solid rgba(0, 94, 44, 0.247);
@@ -55,8 +55,8 @@
 .inputt > button {
     background-color: #238c93;
     border: none;
-    height: 5vh;
-    width: 8vw;
+    height: 6vh;
+    width: 12vw;
     border-radius: 8px;
     color: white;
     font-size:20px;

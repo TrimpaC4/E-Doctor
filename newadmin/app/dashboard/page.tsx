@@ -33,33 +33,33 @@ const Dashboard: React.FC = () => {
           <div className={dashboardStyle.Counters}>
             <div>
               <section className={dashboardStyle.aa}>
-                <p>aaaaa</p>
-                <p>aaaaaaaa</p>
-                <p>aaaaaa</p>
+                <p>Number Of Patients</p>
+                <p>2,300</p>
+                <p>+55% since yesterday</p>
               </section>
               <Image src={NumOfPatient} alt="Number of Patients" />
             </div>
             <div>
               <section className={dashboardStyle.aa}>
-                <p>aaaaa</p>
-                <p>aaaaaaaa</p>
-                <p>aaaaaa</p>
+                <p>Number Of Doctor</p>
+                <p>2,300</p>
+                <p>+3% since last week</p>
               </section>
               <Image src={NumOfDoctor} alt="aaaa" />
             </div>
             <div>
               <section className={dashboardStyle.aa}>
-                <p>aaaaa</p>
-                <p>aaaaaaaa</p>
-                <p>aaaaaa</p>
+                <p>Number Of Appointment</p>
+                <p>2,300</p>
+                <p>-2% since last quarter</p>
               </section>
               <Image src={NumOfAppointment} alt="" />
             </div>
             <div>
               <section className={dashboardStyle.aa}>
-                <p>aaaaa</p>
-                <p>aaaaaaaa</p>
-                <p>aaaaaa</p>
+                <p>Incomes</p>
+                <p>$103,430</p>
+                <p>+5% than last month</p>
               </section>
               <Image src={incomes} alt="" />
             </div>

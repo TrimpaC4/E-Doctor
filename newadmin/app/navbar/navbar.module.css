@@ -18,13 +18,23 @@
   width: 16vw;
 }
 
-.nav_main_container > div ul {
+.nav_main_container > div ul li {
   opacity: 0;
   transition: 0.3s;
 }
 
-.nav_main_container:hover > div ul {
+@keyframes hide {
+  from { opacity: 0; }
+  to {opacity: 1;}
+}
+
+.nav_main_container:hover > div ul li {
   opacity: 1;
+}
+
+.navLists > div > Image {
+  height: 50px;
+  width: 50px;
 }
 
 .navLists {
@@ -37,4 +47,18 @@
 
 .navLists li {
   list-style: none;
+  font-size: 1.1rem;
+  color: #505050;
+}
+
+.navLists > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.iconsNav {
+  height: 20px;
+  width: 20px;
 }
