@@ -1,4 +1,4 @@
-import React, { useEffect, useState , useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./chat.css";
 import io from "socket.io-client";
 import axios from "axios";
@@ -50,18 +50,12 @@ function Chat({ messages, room, id }) {
           return (
             <div className="position-holder">
               <div
-              key={i}
-              className={
-                message.senderPhone === id + ""
-                  ? "me"
-                  : "you"
-              }
-            >
-              <div >
-                {message.content}
+                key={i}
+                className={message.senderPhone === id + "" ? "me" : "you"}
+              >
+                <div>{message.content}</div>
+                <p>{format(message.createdAt)}</p>
               </div>
-              <p>{format(message.createdAt)}</p>
-            </div>
             </div>
           );
         })}
@@ -78,7 +72,7 @@ function Chat({ messages, room, id }) {
         <button
           onClick={() => {
             sendMessage(mes);
-            setMes("")
+            setMes("");
           }}
         >
           send message
