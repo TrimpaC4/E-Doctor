@@ -17,14 +17,16 @@ const Page = () => {
   }, [dispatch]);
 
   return (
+     
     <div>
-                <h2 style={{textAlign:"center"}}>Patients List </h2>
-                <button  className='btnAdd'  style={{ backgroundColor: '#008CBA' }}  > <Link href="/addPatient"> + Ptients </Link> </button>
+
+                <h2 style={{textAlign:"center", fontFamily:"-moz-initial"}}>Patients List </h2>
+                <button  className='btnAdd'    > <Link href="/addPatient"> + Ptients </Link> </button>
          
               
               <div className='tablee'>
    <table className="table">
-   <tr>
+                <tr>
                 <th scope="col"></th>
                 <th scope="col">name</th>
                 <th scope="col">age</th>
@@ -32,60 +34,34 @@ const Page = () => {
                 <th scope='col'>phone</th>
                 <th scope='col'>Email</th>
                 <th scope='col'>Adress</th>
+                <th scope='col'>update</th>
+                <th scope='col'>delete</th>
               </tr>
+              {
+                patients.data.map((e,key)=>{ 
+                  return  <tr key={key} className='one'>
+                <th scope="col"></th>
+                <th scope="col">{e.name}</th>
+                <th scope="col">{e.age}</th>
+                <th scope="col">{e.gender}</th>
+                <th scope='col'>{e.phone}</th>
+                <th scope='col'>{e.email}</th>
+                <th scope='col'>{e.address}</th>
+                <th scope='col'> {e.isBlocked ? <button  id='block' style={{background:"red"}} onClick={()=>{
+                  dispatch(updatePatient(e.id))
+                }} >Unblock</button> : <button id='block' style={{background:"green"}} onClick={()=>{
+                  dispatch(updatePatient(e.id))
+                }} >block</button>}</th>
+                <th scope='col'><button  id='block' style={{background:"red"}}  onClick={(()=>{      console.log('this is if', e.id);
+                   dispatch(removePatient(e.id));
+                })} >delete</button></th>
+              </tr>
+                })
+              }
               </table>
               </div>
              
-      {patients.data.map((e, i) => (
-        <div className='tablee' key={i}>
-          <table className="table">
-          
-            <tbody>
-              <tr className='tr'>
-                <th scope="row">{e.id}</th>
-                <th scope="row">
-               
-                  </th>
-                <td className='td'>{e.name}</td>
-
-                <td>{e.age}</td>
-                <td>{e.gender}</td>
-                <td>{e.phone}</td>
-                <td>{e.email}</td>
-                <td>{e.address}</td>
-                {e.isBlocked ? <button onClick={()=>{
-                  dispatch(updatePatient(e.id))
-                }} >Unblock</button> : <button onClick={()=>{
-                  dispatch(updatePatient(e.id))
-                }} >block</button>}
-
-                <button className='btnDelete' style={{ backgroundColor: 'red' }} onClick={(()=>{      console.log('this is if', e.id);
-                   dispatch(removePatient(e.id));
-                })} >delete</button>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      ))}
-          
-
-          {/* <form className="px-7 h-screen grid justify-center items-center">
-    <div className="grid gap-6" id="form">
-      <div className="w-full flex gap-3">
-        <input className="capitalize shadow-2xl p-3 ex w-full outline-none focus:border-solid focus:border-[1px] border-[#035ec5] placeholder:text-black" type="text" placeholder="First Name" id="First-Name" name="First-Name" required=""/>
-        <input className="p-3 capitalize shadow-2xl  glass w-full placeholder:text-black outline-none focus:border-solid focus:border-[1px] border-[#035ec5]" type="text" placeholder="Last Name" id="Last-Name" name="Last-Name"/>
-      </div>
-      <div className="grid gap-6 w-full">
-        <input className="p-3 shadow-2xl  glass w-full placeholder:text-black outline-none focus:border-solid border-[#035ec5] focus:border-[1px]" type="Email" placeholder="Email" id="Email" name="email"/>
-        <input className="p-3 shadow-2xl   glass w-full text-black outline-none focus:border-solid focus:border-[1px]border-[#035ec5]" type="date" required=""/>
-      </div>
-      <div className="flex gap-3">
-        <input className="p-3 glass shadow-2xl  w-full placeholder:text-black outline-none focus:border-solid focus:border-[1px] border-[#035ec5]" type="password" placeholder="Password" id="password" name="password" required=""/>
-        <input className="p-3 glass shadow-2xl  w-full placeholder:text-black outline-none focus:border-solid focus:border-[1px] border-[#035ec5]" type="password" placeholder="Confirm password" required=""/>
-      </div>
-      <button className="outline-none glass shadow-2xl  w-full p-3  bg-[#ffffff42] hover:border-[#035ec5] hover:border-solid hover:border-[1px]  hover:text-[#035ec5] font-bold" type="submit">Submit</button>
-    </div>
-  </form> */}
+     
 
      
 
