@@ -1,6 +1,7 @@
 .chat{
-    width: 100%;
+    width: 50%;
     height: 72.5vh;
+    background-color: #eee
 }
 .inputs{
     width: 100%;
@@ -27,13 +28,14 @@
     overflow-y: auto;
     overflow-x: auto;
     margin-right: 1rem;
+    padding: 15px;
 }
 .feed::-webkit-scrollbar{
     display: none;
 }
 
 .me{
-    background-color: rgba(74, 78, 207, 0.659);
+    background-color: #73a43b;
     width: fit-content;
     max-width: 40%;
     border-radius: 15px;
@@ -43,9 +45,10 @@
     flex-direction: column;
     margin-right: 0 !important;
     float: right;
+    margin-bottom: 5px;
 }
 .you{
-    background-color: rgba(172, 155, 155, 0.608);
+    background-color: #23afb4;
     width: fit-content;
     max-width: 40%;
     padding: 0.4rem;
@@ -55,6 +58,7 @@
     flex-direction: column;
     font-weight: 500;
     margin-right: 0 !important; 
+    margin-bottom: 5px;
 }
 .me p{
     opacity: 0.5;
@@ -66,4 +70,7 @@
     opacity: 0.5;
     font-size: 10px;
     margin: 0;
+}
+.allofthem{
+    overflow-y: scroll;
 }

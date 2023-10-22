@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/src/redux/store";
 import axios from "axios";
 import Chat from "../../../src/components/chatApp/front/page";
-
+import Image from "next/image";
 function ChatRooms() {
   const [user, setUser] = useState<any>({});
   const [doctors, setDoctors] = useState<any>([]);
@@ -85,11 +85,11 @@ function ChatRooms() {
     if(Object.keys(user).length === 0) {
       setReFtech(!reFetch)
     }
-  }, [reFetch]);
+  }, [reFetch,openConvo]);
   return (
     <div className="chatList">
-      {!openConvo ? (
-        <div>
+       
+        <div className="allofthem">
           <div className="drop-menu">
             <select
               onChange={(e) => {
@@ -120,10 +120,13 @@ function ChatRooms() {
                 key={room.id}
                 onClick={() => {
                   setCurrentRoom(room);
-                  setOpenConvo(true);
+                  setOpenConvo(!openConvo);
                 }}
               >
-                Conversation between you and{" "}
+                 <img src={localStorage.getItem("type") === "doctor"
+                  ? room.patients.avatarUrl
+                  : room.doctors.avatarUrl} alt="img">
+                 </img>
                 {localStorage.getItem("type") === "doctor"
                   ? room.patients.name
                   : room.doctors.name}
@@ -131,7 +134,7 @@ function ChatRooms() {
             );
           })}
         </div>
-      ) : null}
+   
 
       {openConvo ? (
         <Chat messages={currentRoom.messages} room={currentRoom} id={user.id} />
