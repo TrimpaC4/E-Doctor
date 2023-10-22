@@ -1,61 +1,74 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState , useRef } from "react";
 import "./chat.css";
 import io from "socket.io-client";
 import axios from "axios";
+import { format, render, cancel, register } from "timeago.js";
 
 const socket = io.connect("http://localhost:3002");
 
-function Chat({ messages, room }) {
+function Chat({ messages, room, id }) {
   const [mes, setMes] = useState("");
   const [allMessages, setAllMessages] = useState(messages);
-  // console.log(allMessages);
-  // console.log(room);
+
   const sendMessage = async (message) => {
     if (message !== "") {
-      await axios.post("http://localhost:5000/api/message/add", {
-        RoomId: room.id,
-        DoctorId: room.DoctorId,
-        PatientId: room.PatientId,
-        content: message,
-      });
-      await socket.emit("send-message",{
-        RoomId: room.id,
-        DoctorId: room.DoctorId,
-        PatientId: room.PatientId,
-        content: message,
-      });
-      setAllMessages((allMessages) => [
-        ...allMessages,
-        {
+      await axios
+        .post("http://localhost:5000/api/message/add", {
           RoomId: room.id,
           DoctorId: room.DoctorId,
           PatientId: room.PatientId,
           content: message,
-        },
-      ]);
+          senderPhone: id + "",
+        })
+        .then(async (response) => {
+          await socket.emit("send-message", response.data);
+          setAllMessages((allMessages) => [...allMessages, response.data]);
+        });
     }
   };
   useEffect(() => {
+    socket.emit("join-room", room.id + "");
     socket.on("receive-message", (data) => {
+      console.log(data);
       allMessages.push(data);
       setAllMessages((allMessages) => [...allMessages, data]);
-      // console.log(socket.id);
     });
   }, [socket]);
 
+  useEffect(() => {
+    if (feedRef.current) {
+      feedRef.current.scrollTop = feedRef.current.scrollHeight;
+    }
+  }, [allMessages]);
+
+  const feedRef = useRef();
+
   return (
     <div className="chat">
-      <div className="feed">
+      <div className="feed" ref={feedRef}>
         {allMessages.map((message, i) => {
           return (
-            <div key={i} className={message.class === socket.id ? "me" : "you"}>
-              {message.content}
+            <div className="position-holder">
+              <div
+              key={i}
+              className={
+                message.senderPhone === id + ""
+                  ? "me"
+                  : "you"
+              }
+            >
+              <div >
+                {message.content}
+              </div>
+              <p>{format(message.createdAt)}</p>
+            </div>
             </div>
           );
         })}
       </div>
       <div className="inputs">
         <input
+          value={mes}
           type="text"
           placeholder="write message"
           onChange={(e) => {
@@ -65,6 +78,7 @@ function Chat({ messages, room }) {
         <button
           onClick={() => {
             sendMessage(mes);
+            setMes("")
           }}
         >
           send message
