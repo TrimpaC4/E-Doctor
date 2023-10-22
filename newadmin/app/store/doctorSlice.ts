@@ -5,6 +5,16 @@ interface doctorType {
   name: string;
   avatarUrl: string;
   department: string;
+  isVerified: boolean,
+  email:string,
+  address:string,
+  phone:number,
+  cin: number,
+  age: number,
+}
+
+interface doctorType2 {
+  doctorId: any;
   isVerified: boolean
 }
 interface DoctorState {
@@ -112,17 +122,19 @@ export const removeDoctor = createAsyncThunk('api/doctor', async (id:number,{dis
   }
  });
 
-//  export const updateDoctorVerification = createAsyncThunk(
-//   'doctor/updateDoctorVerification',
-//   async ({ doctorId, isVerified }: { doctorId: number, isVerified: boolean }, thunkAPI) => {
-//     try {
-//       const response = await axios.put(`/api/doctors/${doctorId}/verify`, { isVerified });
-//       return response.data;
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   }
-// );
+ export const updateDoctorVerification = createAsyncThunk(
+  'doctor/updateDoctorVerification',
+  async (args:doctorType2,{dispatch}) => {
+    const { doctorId, isVerified } = args;
+    try {
+      const response = await axios.put(`http://127.0.0.1:5000/api/doctor/${doctorId}`, { isVerified });
+      return (await (dispatch(getAllDoctors()))).payload
+      ;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 
 const doctorSlice = createSlice({
   name: "DoctorSlice",

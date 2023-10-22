@@ -2,7 +2,7 @@
 import "./style.css";
 import React, { useEffect } from "react";
 import SideBar from "./SideBar";
-import TopNav from "./TopNav";
+import TopNav from "../../src/components/TopNav";
 import { AppDispatch } from "../../src/redux/store";
 import { useDispatch } from "react-redux";
 import { getOnePatient } from "../../src/redux/patientSlice";
@@ -15,6 +15,7 @@ const DoctorProfile = ({
   children: React.ReactNode;
 }): React.JSX.Element => {
   const dispatch: AppDispatch = useDispatch();
+  
   useEffect(() => {
     const type = localStorage.getItem("type");
     if (type === "patient") {

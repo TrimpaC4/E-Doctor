@@ -60,7 +60,7 @@ const router = useRouter()
       }
     } else if (userType === "1") {
       //patient
-      const x = await dispatch(createPatient({ ...form, age: +form.age }));
+      const x = await dispatch(createPatient({ ...form, age:parseInt(form.age) }));
       if (x.payload.message === "Request failed with status code 500") {
         toast.error(`${x.payload.response.data.message}`, {
           position: "top-center",

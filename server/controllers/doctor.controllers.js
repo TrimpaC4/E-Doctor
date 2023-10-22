@@ -91,6 +91,8 @@ module.exports.getAll = async (req, res) => {
 module.exports.getOne = async (req, res) => {
   res.status(200).send(req.user);
 };
+
+
 module.exports.deleteOne = async (req, res) => {
   try {
     const result = await prisma.doctors.delete({
