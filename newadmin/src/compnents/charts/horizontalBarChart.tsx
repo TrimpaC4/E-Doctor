@@ -39,6 +39,7 @@ const HorizontalBarChart: React.FC<HorizontalBarChartProps> = ({ data }) => {
       datasets: [{
         data: data.values,
         backgroundColor: data.colors,
+        borderRadius: 8, 
       }],
     };
 
@@ -47,7 +48,12 @@ const HorizontalBarChart: React.FC<HorizontalBarChartProps> = ({ data }) => {
       indexAxis: 'y',
       scales: {
         x: {
-          beginAtZero: true, // Start the x-axis at 0
+          beginAtZero: true,
+          ticks: {
+            stepSize: 10, // Set the step size for x-axis labels
+            min: 0, // Set the minimum value for the x-axis
+            max: 60, // Set the maximum value for the x-axis
+          }, // Start the x-axis at 0
         },
         y: {
           beginAtZero: true, // Start the y-axis at 0
@@ -63,7 +69,6 @@ const HorizontalBarChart: React.FC<HorizontalBarChartProps> = ({ data }) => {
   };
 
   return (
-    <div className="card-body p-3">
       <div className="chart">
         <canvas
           ref={canvasRef}
@@ -72,7 +77,6 @@ const HorizontalBarChart: React.FC<HorizontalBarChartProps> = ({ data }) => {
           height="400"
         ></canvas>
       </div>
-    </div>
   );
 };
 

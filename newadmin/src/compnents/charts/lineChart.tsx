@@ -33,52 +33,46 @@ const LineChart: React.FC<LineChartProps> = ({ data }) => {
 
   const getChartConfig = (): ChartConfiguration => {
     const data: ChartData = {
-      labels: ["Label 1", "Label 2", "Label 3", "Label 4", "Label 5"],
+      labels: ["Label 1", "Label 2", "Label 3", "Label 4", "Label 5", "label 6"],
       datasets: [
         {
-          label: "Sample Data",
-          data: [5, 10, 5, 20, 50, 40],
-          borderColor: "white", // Set line color to white
-          backgroundColor: "rgba(255, 255, 255, 0.2)", // Set background color to a semi-transparent white
-          borderWidth: 2,
+          data: [5, 10, 15, 20, 10, 15],
+          borderColor: "#6276E5", // Default line color for light mode
+          backgroundColor: "transparent", // Default background color for light mode
+          borderWidth: 3,
           fill: true, // Fill the area under the line
         },
       ],
     };
 
     const options: ChartOptions = {
-      responsive: false,
+      responsive: true,
       plugins: {
         legend: {
-          labels: {
-            color: "white", // Set legend text color to white
-          },
+          display: false, // Hide the legend
         },
         title: {
           display: true,
-          text: "Chart Title",
-          color: "white", // Set title text color to white
+          color: "black", // Default title text color for light mode
         },
       },
       scales: {
         x: {
           title: {
             display: true,
-            text: "X-axis Label",
-            color: "white", // Set X-axis label color to white
+            color: "#6276E5", // Default X-axis label color for light mode
           },
           ticks: {
-            color: "white", // Set X-axis tick color to white
+            color: "black", // Default X-axis tick color for light mode
           },
         },
         y: {
           title: {
             display: true,
-            text: "Y-axis Label",
-            color: "white", // Set Y-axis label color to white
+            color: "black", // Default Y-axis label color for light mode
           },
           ticks: {
-            color: "white", // Set Y-axis tick color to white
+            color: "black", // Default Y-axis tick color for light mode
           },
         },
       },
@@ -92,16 +86,14 @@ const LineChart: React.FC<LineChartProps> = ({ data }) => {
   };
 
   return (
-    <div className="card-body p-3">
       <div className="chart">
         <canvas
           ref={canvasRef}
           className="chart-canvas"
-          width="500"
+          width="800"
           height="400"
         ></canvas>
       </div>
-    </div>
   );
 };
 

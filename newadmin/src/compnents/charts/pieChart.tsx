@@ -40,7 +40,7 @@ const pieChart: React.FC<PieChartProps> = () => {
       labels: ["Label 1", "Label 2", "Label 3"],
       datasets: [
         {
-          data: [30, 50, 20],
+          data: [50, 20],
           backgroundColor: ["red", "blue", "green"],
         },
       ],
@@ -58,16 +58,14 @@ const pieChart: React.FC<PieChartProps> = () => {
   };
 
   return (
-      <div className="card-body p-3">
         <div className="chart">
           <canvas
             ref={pieChartRef}
             className="chart-canvas"
-            width="500"
-            height="400"
+            width="350"
+            height="350"
           ></canvas>
         </div>
-      </div>
   );
 };
 

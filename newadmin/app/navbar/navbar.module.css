@@ -1,0 +1,25 @@
+.nav_main_container {
+  position: fixed;
+  width: 6%;
+  border-radius: 1rem;
+  top: 1.6rem;
+  left: 1.5rem;
+  background-color: #ffffff;
+  height: 93vh;
+  transition: 0.3s cubic-bezier(0.77, 0, 0.175, 1);
+  box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15);
+  z-index: 1;
+}
+
+.nav_main_container:hover {
+  width: 16vw;
+}
+
+.nav_main_container > div ul {
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.nav_main_container:hover > div ul {
+  opacity: 1;
+}
