@@ -66,14 +66,14 @@ const DoctorsList = () => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button
+              {/* <Button
                 size="small"
                 onClick={() => {
                   dispatch(removeDoctor(doctor.id));
                 }}
               >
                 Delete
-              </Button>
+              </Button> */}
             </CardActions>
           </Card>
           </Link>
