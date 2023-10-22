@@ -100,6 +100,14 @@ const SideBar = () => {
               />
               Blog
             </li>
+            <li onClick={() => navigate.push("/doctorProfile/mapDoc")}>
+              <FontAwesomeIcon
+                className="DoctorProfile-icon"
+                icon={blog}
+                style={{ color: "#070808" }}
+              />
+              Location
+            </li>
           </ul>
         </div>
       ) : (
