@@ -113,7 +113,7 @@ export const filteredDepartement = createAsyncThunk(
   }
 );
 export const updateLatLong = createAsyncThunk(
-  "filtredDepartementData",
+  "updateLatLong",
   async (body: any) => {
     try {
       const data = await axios.put(
@@ -126,7 +126,7 @@ export const updateLatLong = createAsyncThunk(
   }
 );
 export const updateisLocated = createAsyncThunk(
-  "filtredDepartementData",
+  "updatelocation",
   async (body: any) => {
     try {
       const data = await axios.put(

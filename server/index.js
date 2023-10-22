@@ -12,7 +12,7 @@ const appointmentRouter = require("./routers/appointementRouter.js")
 const AdminDocRouter = require("./routers/admin.doc.router.js")
 const messageRouter = require("./routers/message.Router")
 const payment = require('./routers/payment.router')
-const EmailSender = require('./emailServer/EmailSender'); // Adjust the path to your EmailSender component
+// const EmailSender = require('./emailServer/EmailSender'); // Adjust the path to your EmailSender component
 
 app.use(cors())
 
@@ -25,8 +25,7 @@ app.use("/api/appointment/", appointmentRouter)
 app.use("/api/AdminDoc/", AdminDocRouter);
 app.use("/api/message/",messageRouter)
 app.use("/api/payment", payment)
-app.use(EmailSender); // Use the EmailSender component as middleware
-
+// app.use(EmailSender); 
 
 const server = http.createServer(app);
 
