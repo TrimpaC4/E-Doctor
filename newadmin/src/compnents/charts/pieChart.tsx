@@ -37,17 +37,17 @@ const pieChart: React.FC<PieChartProps> = () => {
 
   const getPieChartConfig = (): ChartConfiguration => {
     const data: ChartData = {
-      labels: ["Label 1", "Label 2", "Label 3"],
+      labels: ["Male", "Female",],
       datasets: [
         {
-          data: [30, 50, 20],
+          data: [20, 50],
           backgroundColor: ["red", "blue", "green"],
         },
       ],
     };
 
     const options: ChartOptions = {
-      responsive: false,
+      responsive: true,
     };
 
     return {
@@ -58,16 +58,14 @@ const pieChart: React.FC<PieChartProps> = () => {
   };
 
   return (
-      <div className="card-body p-3">
         <div className="chart">
           <canvas
             ref={pieChartRef}
             className="chart-canvas"
-            width="500"
-            height="400"
+            width="350"
+            height="350"
           ></canvas>
         </div>
-      </div>
   );
 };
 

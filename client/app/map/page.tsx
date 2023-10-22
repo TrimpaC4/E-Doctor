@@ -357,6 +357,14 @@ const Map = () => {
           })}
         </select>
       </ul>
+      <div className="location_info">
+          <div className="map_avatar">
+            <img src="https://static.vecteezy.com/system/resources/previews/008/957/225/original/female-doctor-avatar-clipart-icon-in-flat-design-vector.jpg" alt="" />
+          </div>
+          <h4>name: alexa</h4>
+          <p id="nameDoctor">adress:<br/>Calle La Bolsa, 6 29015 Málaga España</p>
+          <p>Phone Number:<br/>123456789</p>
+      </div>
     </div>
   );
 };

@@ -28,7 +28,7 @@ const Login: React.FC = () => {
       
       if (response.status === 200) {
         const data = response.data;
-        router.push('/homee');
+        router.push('/dashboard');
         if (data.success) {
           setMessage('Sign-in successful');
         } else {

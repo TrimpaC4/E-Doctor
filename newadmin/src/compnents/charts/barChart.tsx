@@ -37,11 +37,11 @@ const barChart: React.FC<PieChartProps> = () => {
 
   const getBarChartConfig = (): ChartConfiguration => {
     const data: ChartData = {
-      labels: ["Label 1", "Label 2", "Label 3", "Label 4", "Label 5"],
+      labels: ["Label 1", "Label 2", "Label 3", "Label 4", "Label 5", "label 6", "label 6", "label 6", "label 6"],
       datasets: [
         {
           label: "Bar Chart Data",
-          data: [10, 20, 30, 40, 10],
+          data: [10, 20, 30, 40, 10, 30],
           backgroundColor: ["red", "blue", "green", "orange", "purple"],
           borderColor: ["red", "blue", "green", "orange", "purple"],
           borderWidth: 1,
@@ -50,7 +50,7 @@ const barChart: React.FC<PieChartProps> = () => {
     };
 
     const options: ChartOptions = {
-      responsive: false,
+      responsive: true,
       scales: {
         y: {
           beginAtZero: true,
@@ -67,17 +67,14 @@ const barChart: React.FC<PieChartProps> = () => {
 
   return (
 
-      <div className="card-body p-3">
         <div className="chart">
           <canvas
             ref={barChartRef}
             className="chart-canvas"
-            width="500"
+            width="700"
             height="400"
           ></canvas>
         </div>
-      </div>
-
   );
 };
 
