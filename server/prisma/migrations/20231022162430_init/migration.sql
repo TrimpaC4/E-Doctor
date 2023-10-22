@@ -45,6 +45,9 @@ CREATE TABLE `doctors` (
     `password` VARCHAR(255) NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `lat` INTEGER NOT NULL DEFAULT 0,
+    `long` INTEGER NOT NULL DEFAULT 0,
+    `isLocated` BOOLEAN NULL DEFAULT false,
 
     UNIQUE INDEX `phone`(`phone`),
     UNIQUE INDEX `email`(`email`),
