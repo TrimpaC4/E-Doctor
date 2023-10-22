@@ -19,7 +19,6 @@ import {
 } from 'mdb-react-ui-kit';
 import Navbar from "../navbar/page";
 import { useSearchParams } from 'next/navigation';
-import { log } from 'console';
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../store";
 import {
@@ -27,6 +26,8 @@ import {
   removeDoctor,
   updateDoctorVerification,
 } from "../store/doctorSlice";
+import "./style.css";
+
 const page = () => {
   const dispatch: AppDispatch = useDispatch();
   useEffect(() => {
@@ -58,7 +59,7 @@ const page = () => {
                 <MDBCardImage
                   src={doctor?.avatarUrl}
                   alt="avatar"
-                  className="rounded-circle"
+                  className="image"
                   style={{ width: '150px' }}
                   fluid />
                 <p className="text-muted mb-1">{doctor?.department}</p>

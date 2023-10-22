@@ -47,9 +47,10 @@ const DoctorsList = () => {
         {allDoctors.map((doctor: any) => (
           <Link href={{
             pathname: '/doctorprofile/',
-            query: { id : doctor.id }, 
+            query: { id : doctor.id },
+             
           }}>
-          <Card key={doctor.id} sx={{ maxWidth: 345, margin: "10px" }}>
+          <Card key={doctor.id} sx={{ maxWidth: 345, margin: "10px",  }}>
             <CardMedia
               component="img"
               image={doctor.avatarUrl}
@@ -65,23 +66,6 @@ const DoctorsList = () => {
               </Typography>
             </CardContent>
             <CardActions>
-              {/* {!!doctor.isVerified ? (
-                <i style={{fontSize:"24px"}} className  ="fa">&#xf058;</i>
-              ) : (
-                <Button
-                  size="small"
-                  onClick={() => {
-                    dispatch(
-                      updateDoctorVerification({
-                        doctorId: doctor.id,
-                        isVerified: true,
-                      })
-                    );
-                  }}
-                >
-                  Verify
-                </Button>
-              )} */}
               <Button
                 size="small"
                 onClick={() => {
