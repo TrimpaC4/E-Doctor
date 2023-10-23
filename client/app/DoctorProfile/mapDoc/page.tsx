@@ -175,13 +175,23 @@ const geojsonData={features:[]}
   return (
     <div>
       <ul>
-        <span>
+        {/* <span>
           <input onChange={(e)=>{setEmailval(e.target.value)}} type="text" placeholder="write your e-mail"></input>
-        </span>
-        <button onClick={()=>dispatch(updateLatLong({email:emailVal,lat:mouseLat,long:mouseLong}))}>
+        </span> */}
+        <div className="input-group mb-3">
+  <div className="input-group-prepend">
+    <span className="input-group-text" id="basic-addon1">E-mail</span>
+  </div>
+  <input type="text" onChange={(e)=>{setEmailval(e.target.value)}} className="form-control" placeholder="E-mail" aria-label="Username" aria-describedby="basic-addon1"/>
+</div>
+        {/* <button onClick={()=>dispatch(updateLatLong({email:emailVal,lat:mouseLat,long:mouseLong}))}>
           Submit
-        </button>
-        <button onClick={()=>dispatch(updateisLocated({email:emailVal}))} >Update</button>
+        </button> */}
+        <button type="button"  onClick={()=>dispatch(updateLatLong({email:emailVal,lat:mouseLat,long:mouseLong}))} className="btn btn-primary">Submit</button>
+
+        {/* <button onClick={()=>dispatch(updateisLocated({email:emailVal}))} >Update</button> */}
+        <button onClick={()=>dispatch(updateisLocated({email:emailVal}))} type="button" className="btn btn-secondary">Update</button>
+
       </ul>
 
     <div className="big-div-parent">

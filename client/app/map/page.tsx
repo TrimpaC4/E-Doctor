@@ -203,6 +203,25 @@ const Map = () => {
       }
     }
   }
+  const geojsonData: any = {
+    type: "FeatureCollection",
+    features: allDoctors.map((coords: any) => ({
+      type: "Feature",
+      geometry: {
+        type: "Point", // You can change this to other geometries like LineString or Polygon as needed
+        coordinates: [coords.long, coords.lat],
+      },
+      properties: {
+        // Add any additional properties you want here
+        title: coords.name,
+        description: coords.department,
+        phone: coords.phone,
+        address: coords.address,
+        avatar: coords.avatarUrl,
+        email: coords.email
+      }
+    })),
+  };
   useEffect(()=>{
     dispatch(getAllDoctors());
 
@@ -216,25 +235,6 @@ const Map = () => {
       center: [Long, Lat],
       zoom: 6,
     });
-    const geojsonData: any = {
-      type: "FeatureCollection",
-      features: allDoctors.map((coords: any) => ({
-        type: "Feature",
-        geometry: {
-          type: "Point", // You can change this to other geometries like LineString or Polygon as needed
-          coordinates: [coords.long, coords.lat],
-        },
-        properties: {
-          // Add any additional properties you want here
-          title: coords.name,
-          description: coords.department,
-          phone: coords.phone,
-          address: coords.address,
-          avatar: coords.avatarUrl,
-          email: coords.email
-        }
-      })),
-    };
     removeDuplicates();
     departement();
     removeDuplicatesInfo(infoDoc)
@@ -316,36 +316,29 @@ const Map = () => {
 
     //////////////////////////////////////////////////////////////////////////////////////////////////
     // Add popups to map features
-    map.on("click", "points", (event: any) => {
-      let coordinates:any = []
-      let description = ""
-      let address:any = ""
-      let name = ""
-      const email = event.features[0].properties.email;
-      let phone = 0
-      let avatarUrl = ""
-     allDoctors.forEach((e:any)=>{
-      coordinates=[e.long,e.lat]
-      address=e.address
-      avatarUrl=e.avatarUrl
-      name=e.name
-      phone=e.phone
-      description=e.department
-     })
-
+    map.on('click', 'points', (event:any) => {
+       
+      const coordinates = event.features[0].geometry.coordinates;
+      const description = event.features[0].properties.description;
+      const phone = event.features[0].properties.phone;
+      const email = event.features[0].properties.phone;
+      const address = event.features[0].properties.address;
+      const name = event.features[0].properties.title;
+    
       while (Math.abs(event.lngLat.lng - coordinates[0]) > 180) {
         coordinates[0] += event.lngLat.lng > coordinates[0] ? 360 : -360;
       }
 
-      new mapboxgl.Popup({ offset: 25 })
+      new mapboxgl.Popup()
         .setLngLat(coordinates)
         .setHTML(`<div className="location_info">
         <div className="map_avatar">
-        <p>Departement:<br/>${description}</p>
+        <p id="nameDoctor">${description}</p>
+        <p id="nameDoctor">${email}</p>
         </div>
-        <h4>name: ${name}</h4>
-        <p id="nameDoctor">adress:<br/>${address}</p>
-        <p>Phone Number:<br/>${phone}</p>
+        <h4>${name}</h4>
+        <p id="nameDoctor">${address}</p>
+        <p>${phone}</p>
     </div>`)
         .addTo(map);
     });

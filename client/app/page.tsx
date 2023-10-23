@@ -154,7 +154,8 @@ const LandingPage = () => {
               </div>
               <div>
                 <Link href="/map">
-                  <button>Map</button>
+                <button type="button" className="btn btn-primary">Map</button>
+
                 </Link>
               </div>
               <Link
